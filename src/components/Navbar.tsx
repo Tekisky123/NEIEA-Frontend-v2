@@ -9,9 +9,9 @@ const Navbar: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = (dropdownName: string) => {
-    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
-  };
+  // const toggleDropdown = (dropdownName: string) => {
+  //   setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+  // };
 
   const handleMouseEnter = (dropdownName: string) => {
     setActiveDropdown(dropdownName);
