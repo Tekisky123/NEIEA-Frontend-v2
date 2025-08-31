@@ -8,7 +8,7 @@
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  height: 140px !important;
+  height: 115px !important;
   z-index: 1000 !important;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
   box-sizing: border-box !important;
@@ -315,13 +315,14 @@
 /* Mobile and Tablet Responsive Styles */
 @media (max-width: 1024px) {
   body {
-    padding-top: 80px !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
   }
   .navbar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 10px 0 !important;
+    padding: 8px 0 !important;
     margin: 0 !important;
     position: fixed !important;
     top: 0 !important;
@@ -329,19 +330,29 @@
     right: 0 !important;
     flex-wrap: nowrap !important;
     width: 100% !important;
+    height: 70px !important;
     box-sizing: border-box !important;
     background-color: white !important;
     z-index: 1000 !important;
-    box-shadow: none !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     border: none !important;
   }
 
   .navbar-brand {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 8px !important;
     flex: 1 !important;
     padding-left: 15px !important;
+  }
+
+  .navbar-logo {
+    height: 50px !important;
+    max-width: 180px !important;
+    margin-right: 10px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 4px !important;
   }
 
   /* Reset navbar-brand for desktop */
@@ -474,8 +485,36 @@
 }
 
 @media (max-width: 480px) {
+  body {
+    padding-top: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .navbar {
+    height: 60px !important;
+    padding: 5px 0 !important;
+  }
+  
+  .navbar-brand {
+    gap: 5px !important;
+    padding-left: 10px !important;
+  }
+  
   .navbar-logo {
+    height: 40px !important;
     max-width: 120px !important;
+    margin-right: 8px !important;
+    padding: 3px !important;
+  }
+  
+  .mobile-donate-btn {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+  }
+  
+  .mobile-bell-icon svg {
+    width: 16px !important;
+    height: 16px !important;
   }
   
   .nav-item {

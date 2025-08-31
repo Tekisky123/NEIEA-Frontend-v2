@@ -34,9 +34,9 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#E5DED4]">
+    <div className="min-h-screen bg-[#E5DED4] m-0 p-0">
       {/* Hero Image Slider - Full View */}
-      <div className="relative h-screen overflow-hidden md:mt-[80px]">
+      <div className="relative overflow-hidden mt-[140px] md:mt-[70px] max-sm:mt-[60px] h-[calc(100vh-140px)] md:h-[calc(100vh-70px)] max-sm:h-[calc(100vh-60px)]">
         {heroImages.map((image, index) => (
           <div
             key={index}
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
           </div>
         ))}
@@ -55,29 +55,29 @@ const Home: React.FC = () => {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all duration-300 z-10"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-2 md:p-3 rounded-full transition-all duration-300 z-10"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all duration-300 z-10"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-2 md:p-3 rounded-full transition-all duration-300 z-10"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3 z-10">
           {heroImages.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide 
                   ? 'bg-white scale-125' 
                   : 'bg-white bg-opacity-50 hover:bg-opacity-75'

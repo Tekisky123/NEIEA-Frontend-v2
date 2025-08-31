@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                                 className="bg-[#E5DED4] text-[#994263] hover:bg-opacity-30 hover:text-[#994263] p-2 rounded-full transition-all duration-300 hover:scale-110"
                                 aria-label="YouTube"
                             >
-                                <Youtube className="h-8 w-8" />
+                                <Youtube className="h-6 w-6 sm:h-8 sm:w-8" />
                             </a>
                             <a
                                 href="https://www.whatsapp.com/channel/0029VaA7jjBLo4hapNUZ1s3B"
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
                                 className="bg-[#E5DED4] text-[#994263] hover:bg-opacity-30 hover:text-[#994263] p-2 rounded-full transition-all duration-300 hover:scale-110"
                                 aria-label="YouTube"
                             >
-                                <MessageCircleMore className="h-8 w-8" />
+                                <MessageCircleMore className="h-6 w-6 sm:h-8 sm:w-8" />
                             </a>
                         </div>
                     </div>
