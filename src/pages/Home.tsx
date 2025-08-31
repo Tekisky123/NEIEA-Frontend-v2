@@ -36,7 +36,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#E5DED4]">
       {/* Hero Image Slider - Full View */}
-      <div className="relative h-screen overflow-hidden mt-[140px]">
+      <div className="relative h-screen overflow-hidden md:mt-[80px]">
         {heroImages.map((image, index) => (
           <div
             key={index}
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
 
       {/* Vision and Mission Section */}
       <div className="py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Left: Image */}
             <div className="order-2 lg:order-1">
@@ -524,7 +524,7 @@ const Home: React.FC = () => {
               href="/about-us/testimonials"
               className="btn-blue inline-flex items-center text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300 shadow-lg"
             >
-              Read All Testimonials & Featured Stories
+              Testimonials & Featured Stories
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>

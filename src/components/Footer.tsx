@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
 
                     {/* Right: Social Media Icons */}
                     <div className="flex justify-end w-full lg:w-1/2">
-                        <div className="flex items-center space-x-6">
+                        <div className="flex items-center space-x-5">
                             <a
                                 href="https://x.com/neiea_india"
                                 target="_blank"
