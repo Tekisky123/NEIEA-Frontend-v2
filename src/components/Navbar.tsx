@@ -4,21 +4,59 @@ import './Navbar.css';
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string[]>([]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Close any open dropdowns when opening/closing mobile menu
+    setActiveDropdown(null);
+    setActiveSubmenu([]);
   };
 
-  // const toggleDropdown = (dropdownName: string) => {
-  //   setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
-  // };
+  const toggleDropdown = (dropdownName: string) => {
+    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+    // Close submenu when switching main dropdowns
+    setActiveSubmenu([]);
+    
+    // Scroll to top of mobile menu when opening dropdown on mobile
+    if (window.innerWidth <= 1024 && activeDropdown !== dropdownName) {
+      setTimeout(() => {
+        const navList = document.querySelector('.nav-list.mobile-menu-open');
+        if (navList) {
+          navList.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const toggleSubmenu = (submenuName: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveSubmenu(prev => 
+      prev.includes(submenuName) 
+        ? prev.filter(name => name !== submenuName)
+        : [...prev, submenuName]
+    );
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+    setActiveSubmenu([]);
+  };
 
   const handleMouseEnter = (dropdownName: string) => {
-    setActiveDropdown(dropdownName);
+    // Only activate on desktop, not mobile
+    if (window.innerWidth > 1024) {
+      setActiveDropdown(dropdownName);
+    }
   };
 
   const handleMouseLeave = () => {
-    setActiveDropdown(null);
+    // Only deactivate on desktop, not mobile
+    if (window.innerWidth > 1024) {
+      setActiveDropdown(null);
+    }
   };
 
   return (
@@ -44,7 +82,7 @@ const Navbar: React.FC = () => {
 
       {/* Hamburger Menu Button */}
       <button
-        className="navbar-toggle"
+        className={`navbar-toggle ${isMobileMenuOpen ? 'active' : ''}`}
         onClick={toggleMobileMenu}
         aria-label="Toggle navigation"
       >
@@ -62,15 +100,32 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('aboutus')}
           >
             About Us<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'aboutus' ? 'show' : ''}`}>
-            <li><a className="dropdown-item" title="Introduction" href="/about-us/introduction">Introduction</a></li>
+            <li><a className="dropdown-item" title="Introduction" href="/about-us/introduction" onClick={closeMobileMenu}>Introduction</a></li>
             <li><a className="dropdown-item" title="Leadership" href="/about-us/leadership">Leadership</a>            </li>
-            <li className="dropdown-submenu"><a className="dropdown-item" title="Our Working Model" href="/about-us/working-model">Our Working Model<i className="submenu-arrow"></i></a>
+            <li className={`dropdown-submenu ${activeSubmenu.includes('working-model') ? 'active' : ''}`}>
+              <a 
+                className="dropdown-item" 
+                title="Our Working Model" 
+                href="/about-us/working-model"
+                onClick={(e) => toggleSubmenu('working-model', e)}
+              >
+                Our Working Model<i className="submenu-arrow"></i>
+              </a>
               <ul className="submenu">
-                <li className="dropdown-submenu"><a className="dropdown-item" title="Blended Learning Model" href="/about-us/working-model/blended-learning">Blended Learning Model<i className="submenu-arrow"></i></a>
+                <li className={`dropdown-submenu ${activeSubmenu.includes('blended-learning') ? 'active' : ''}`}>
+                  <a 
+                    className="dropdown-item" 
+                    title="Blended Learning Model" 
+                    href="/about-us/working-model/blended-learning"
+                    onClick={(e) => toggleSubmenu('blended-learning', e)}
+                  >
+                    Blended Learning Model<i className="submenu-arrow"></i>
+                  </a>
                   <ul className="submenu">
                     <li><a className="dropdown-item" title="Discourse Oriented Pedagogy" href="/about-us/working-model/blended-learning/discourse-oriented-pedagogy">Discourse Oriented Pedagogy</a></li>
                     <li><a className="dropdown-item" title="Application Of Technology" href="/about-us/working-model/blended-learning/application-of-technology">Application Of Technology</a></li>
@@ -81,7 +136,15 @@ const Navbar: React.FC = () => {
               </ul>
             </li>
             <li><a className="dropdown-item" title="Testimonials & Featured stories" href="/about-us/testimonials">Testimonials & Featured stories</a></li>
-            <li className="dropdown-submenu"><a className="dropdown-item" title="Media and Events" href="/about-us/media-events">Media and Events<i className="submenu-arrow"></i></a>
+            <li className={`dropdown-submenu ${activeSubmenu.includes('media-events') ? 'active' : ''}`}>
+              <a 
+                className="dropdown-item" 
+                title="Media and Events" 
+                href="/about-us/media-events"
+                onClick={(e) => toggleSubmenu('media-events', e)}
+              >
+                Media and Events<i className="submenu-arrow"></i>
+              </a>
               <ul className="submenu">
                 <li><a className="dropdown-item" title="Gallery" href="/about-us/media-events/gallery">Gallery</a></li>
               </ul>
@@ -100,12 +163,18 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('ourwork')}
           >
             Our Works<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'ourwork' ? 'show' : ''}`}>
-            <li className="dropdown-submenu">
-              <a className="dropdown-item" title="Education" href="/our-works/education">
+            <li className={`dropdown-submenu ${activeSubmenu.includes('education') ? 'active' : ''}`}>
+              <a 
+                className="dropdown-item" 
+                title="Education" 
+                href="/our-works/education"
+                onClick={(e) => toggleSubmenu('education', e)}
+              >
                 Education
                 <i className="submenu-arrow"></i>
               </a>
@@ -154,6 +223,7 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('takeaction')}
           >
             Courses<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
@@ -195,6 +265,7 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('ourwork2')}
           >
             Partners<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
@@ -205,10 +276,8 @@ const Navbar: React.FC = () => {
             <li>
               <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
             </li>
-            <li className="dropdown-submenu">
-              <a className="dropdown-item" title="Global Partners" href="/partners/global">
-                Global Partners
-              </a>
+            <li>
+              <a className="dropdown-item" title="Global Partners" href="/partners/global">Global Partners</a>
             </li>
           </ul>
         </li>
@@ -222,6 +291,7 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('aboutus2')}
           >
             Donation<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
@@ -231,9 +301,6 @@ const Navbar: React.FC = () => {
             </li>
             <li>
               <a className="dropdown-item" title="Volunteer" href="/donation/volunteer">Volunteer</a>
-            </li>
-            <li>
-              <a className="dropdown-item" title="Donate" href="/donation/donate">Donate</a>
             </li>
           </ul>
         </li>
@@ -247,6 +314,7 @@ const Navbar: React.FC = () => {
             className="dropdown-toggle"
             role="button"
             tabIndex={0}
+            onClick={() => toggleDropdown('takeaction2')}
           >
             NEI USA<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
@@ -256,14 +324,17 @@ const Navbar: React.FC = () => {
             </li>
           </ul>
         </li>
+      </ul>
 
-        <li className="nav-item bell-icon hidden-xs hidden-sm" aria-label="Notifications" role="button">
+      {/* Desktop-only Bell Icon and Donate Button - Outside nav-list */}
+      <div className="desktop-right-elements">
+        <div className="nav-item bell-icon hidden-xs hidden-sm" aria-label="Notifications" role="button">
           <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" width="24" height="24" viewBox="0 0 24 24" stroke="black" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
           </svg>
-        </li>
+        </div>
 
-        <li className="nav-item">
+        <div className="nav-item">
           <a
             title="Donate"
             href="/donation/donate"
@@ -273,8 +344,8 @@ const Navbar: React.FC = () => {
           >
             DONATE
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   );
 };
