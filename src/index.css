@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,200..900;1,200..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,6 +15,24 @@
   .btn-blue:focus,
   .btn-blue:active {
     @apply bg-[#00546B] text-[#E5DED4];
+  }
+  .rtr-header{
+    font-size: 34px;
+    line-height: 1.4;
+    font-weight: 800;
+  }
+  .rtr-para{
+    font-size: 20px;
+    line-height: 1.4;
+  }
+  .title-color{
+    color: #006B4D;
+  }
+  .title-border{
+    text-align: center;
+    line-height: 24px;
+    border-bottom: 4px solid #FFCC4E;
+    padding-bottom: 15px;
   }
 }
 
