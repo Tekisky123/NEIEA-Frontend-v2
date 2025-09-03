@@ -62,6 +62,103 @@ const Home: React.FC = () => {
   };
 
   return (
+    <>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .vision-mission-bg {
+            background-size: contain;
+          }
+          
+          @media (max-width: 640px) {
+            .vision-mission-bg {
+              background-size: 100% auto;
+              background-position: center top;
+            }
+          }
+          
+          @media (min-width: 641px) and (max-width: 1024px) {
+            .vision-mission-bg {
+              background-size: 90% auto;
+              background-position: center center;
+            }
+          }
+          
+          @media (min-width: 1025px) {
+            .vision-mission-bg {
+              background-size: 100% 100%;
+              background-position: center center;
+            }
+          }
+          
+          @media (min-width: 1440px) {
+            .vision-mission-bg {
+              background-size: cover;
+              background-position: center center;
+            }
+          }
+          
+          @media (min-width: 1920px) {
+            .vision-mission-bg {
+              background-size: cover;
+              background-position: center center;
+            }
+          }
+          
+          .learn-more-button-responsive {
+            bottom: 36px;
+            left: 8px;
+          }
+          
+          @media (max-width: 640px) {
+            .learn-more-button-responsive {
+              bottom: 30%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: calc(100% - 32px);
+              max-width: 300px;
+            }
+          }
+          
+          @media (min-width: 641px) and (max-width: 1024px) {
+            .learn-more-button-responsive {
+              bottom: 25%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: calc(100% - 48px);
+              max-width: 350px;
+            }
+          }
+          
+          @media (min-width: 1024px) {
+            .lg\\:py-16 {
+              padding-top: 0rem;
+              padding-bottom: 1rem;
+            }
+          }
+          
+          @media (min-width: 1025px) {
+            .learn-more-button-responsive {
+              bottom: 200px;
+              left: 40px;
+              transform: none;
+            }
+            
+            .vision-mission-desktop h2 {
+              font-size: 34px !important;
+              line-height: 1.4 !important;
+              font-weight: 800 !important;
+              font-family: 'Source Serif 4', serif !important;
+            }
+            
+            .vision-mission-desktop p {
+              font-size: 22px !important;
+              max-width: 340px !important;
+              font-family: 'Source Serif 4', serif !important;
+              font-weight: 600 !important;
+            }
+          }
+        `
+      }} />
     <div className="min-h-screen bg-[#E5DED4] m-0 p-0">
       {/* Hero Image Slider - Full View */}
       <div 
@@ -124,122 +221,236 @@ const Home: React.FC = () => {
       </div>
 
       {/* Vision and Mission Section */}
-      <div className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            {/* Left: Image */}
-            <div className="order-2 lg:order-1">
-              <img
-                src="/home/vision.png"
-                alt="Vision and Mission"
-                className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px] sm:max-h-[500px] lg:max-h-none"
-              />
+      <div className="py-8 sm:py-12 lg:py-16 bg-white relative overflow-hidden">
+        {/* Subtle Background Animation Elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-10 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-green-100 to-blue-100 rounded-full opacity-10 blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Mobile/Tablet Layout */}
+          <div className="block lg:hidden">
+            {/* Our Vision Section */}
+            <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+              <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-2xl p-8 shadow-xl border border-blue-200/30 backdrop-blur-sm transform hover:scale-105 transition-all duration-500">
+                <div className="relative">
+                  {/* Decorative elements */}
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-60"></div>
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full opacity-60"></div>
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full opacity-60"></div>
+                  <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-60"></div>
+                  
+                  <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 mb-6 animate-fade-in" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                    Our Vision
+                  </h2>
+                  
+                                  <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto animate-fade-in" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500", fontSize: "22px" }}>
+                  To create a society that upholds the sanctity of every human life, rejects all forms of discrimination, and aspires to build a peaceful, compassionate, and sustainable world.
+                </p>
+                  
+                  {/* Bottom decorative line */}
+                  <div className="mt-6 flex justify-center">
+                    <div className="w-24 h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right: Content */}
-            <div className="order-1 lg:order-2 space-y-6">
-              {/* Vision */}
-              <div>
-                <div className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold mb-3">
-                  <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                  </svg>
-                  Vision
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            {/* Background Image Section */}
+            <div className="mb-8 sm:mb-12 animate-fade-in">
+              <div 
+                className="w-full h-64 sm:h-80 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-700"
+                style={{
+                  backgroundImage: "url('/home/vision2.jpg')",
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+              </div>
+            </div>
+
+            {/* Learn More Button */}
+            <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+              <a
+                href="/about-us/introduction"
+                className="group inline-flex items-center bg-purple-700 hover:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-base sm:text-lg uppercase tracking-wide border-2 border-transparent hover:border-purple-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <span className="relative z-10">Learn More About Us</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <div className="absolute inset-0 bg-purple-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Original Background Image with Overlaid Text */}
+          <div className="hidden lg:block relative w-full vision-mission-bg animate-fade-in" 
+            style={{ 
+              marginLeft: 'calc(-50vw + 50%)', 
+              marginRight: 'calc(-50vw + 50%)', 
+              width: '100vw',
+              height: '150vh',
+              minHeight: '120vh',
+              backgroundImage: "url('/home/vision2.jpg')",
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="w-full h-full">
+              
+              {/* Vision - Top Left */}
+              <div className="vision-mission-desktop absolute top-4 sm:top-8 md:top-12 lg:top-16 left-0 sm:left-0 md:left-6 lg:left-8 w-auto max-w-md lg:max-w-lg px-4 sm:px-6 md:px-0 animate-fade-in">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-1 sm:mb-2 md:mb-3 leading-tight animate-fade-in" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Our Vision
                 </h2>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed animate-fade-in" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: "400" }}>
                   To create a society that upholds the sanctity of every human life, rejects all forms of discrimination, and aspires to build a peaceful, compassionate, and sustainable world.
                 </p>
               </div>
 
-              {/* Mission */}
-              <div>
-                <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold mb-3">
-                  <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Mission
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              {/* Top Right Image */}
+              <div className="absolute top-8 right-8 w-64 h-40 lg:w-80 lg:h-48 animate-fade-in">
+                <img
+                  src="/home/Screenshot 2025-09-02 134307.png"
+                  alt="Vision Illustration"
+                  className="w-full h-full object-contain transform hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Mission - Bottom Right */}
+              <div className="vision-mission-desktop absolute -bottom-3 sm:-bottom-1 md:bottom-1 lg:bottom-16 right-0 sm:right-0 md:right-0 lg:right-2 xl:right-4 w-auto max-w-md lg:max-w-lg px-4 sm:px-6 md:px-0 animate-fade-in">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2 leading-tight animate-fade-in" style={{ fontFamily: "'Poppins', sans-serif" }}>
                   Our Mission
                 </h2>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                  We are dedicated to ensuring that there is no loss of potential and wastage of a child's life, due to inequities in education. Our mission is to create an inclusive educational system that delivers high-quality learning which is affordable, scalable, and transformative. By instilling values of honesty, fairness, respect, and empathy while fostering confidence, resilience, and global thinking, we empower marginalized children to seize opportunities, shape brighter futures, and actively contribute to achieving the Sustainable Development Goals (SDGs) that will guarantee a better world for all.
+                <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed mt-2 sm:mt-3 md:mt-4 animate-fade-in" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                  We are dedicated to ensuring that there is no loss of potential and wastage of a child's life,<br />
+                  due to inequities in education. Our mission is to create an inclusive educational system<br />
+                  that delivers high-quality learning which is affordable, scalable, and transformative.
                 </p>
               </div>
 
-              {/* Learn More Link */}
-              <div className="pt-4">
+              {/* Learn More Button - Left Side Higher */}
+              <div className="absolute learn-more-button-responsive animate-fade-in">
                 <a
                   href="/about-us/introduction"
-                  className="inline-flex items-center text-[#007AA4] hover:text-blue-700 font-semibold transition-colors duration-200"
+                  className="group inline-flex items-center justify-center bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base uppercase tracking-wide transform hover:scale-105 hover:shadow-lg"
                 >
                   Learn More About Us
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
+                  <div className="absolute inset-0 bg-purple-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
               </div>
             </div>
           </div>
+          
         </div>
+        
+        {/* Custom CSS for animations */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes fade-in {
+              from {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .animate-fade-in {
+              animation: fade-in 1s ease-out forwards;
+              opacity: 0;
+            }
+            
+            .animate-fade-in:nth-child(1) { animation-delay: 0.1s; }
+            .animate-fade-in:nth-child(2) { animation-delay: 0.2s; }
+            .animate-fade-in:nth-child(3) { animation-delay: 0.3s; }
+            .animate-fade-in:nth-child(4) { animation-delay: 0.4s; }
+            .animate-fade-in:nth-child(5) { animation-delay: 0.5s; }
+          `
+        }} />
       </div>
 
+             
+
       {/* Leadership Section */}
-      <div className="py-8 sm:py-12 lg:py-16">
+                                                                                                 <div 
+                 className="py-8 sm:py-12 lg:py-16 relative"
+                                   style={{
+                    backgroundImage: "url('/home/Whisk_81d76d445f.jpg')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'right center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+               >
+                               {/* Background Overlay */}
+                <div className="absolute inset-0 bg-white bg-opacity-85"></div>
+             
+             {/* Content */}
+             <div className="relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6 sm:mb-8 lg:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+                                                                                                                                                                                                                                                                                                               <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+                                         <div className="relative inline-block">
+                                                                                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 mb-4 uppercase" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Meet Our Leadership
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
+                                           <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 rounded-full"></div>
+                                         </div>
+                                         <div className="mt-8">
+                                           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", fontSize: "22px" }}>
               Visionary leaders dedicated to transforming education and empowering communities
             </p>
+                                         </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            {/* Left: Founder Image */}
+                                                                                                 {/* Leadership Content with Image and Text Side by Side */}
+                 <div className="grid lg:grid-cols-2 gap-8 items-start">
+                   {/* Left: Leader Image */}
             <div className="order-2 lg:order-1">
-              <div className="relative">
                 <img
                   src="/home/leader.jpg"
                   alt="Javeed Mirza - Founder and President"
-                  className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px] sm:max-h-[500px] lg:max-h-none"
+                       className="w-full h-auto object-contain max-h-[700px] lg:max-h-[800px]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-              </div>
             </div>
 
-            {/* Right: Founder Info */}
+                   {/* Right: Leader Information */}
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold mb-4">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                </svg>
+                    <div className="mb-4">
+                      <div className="inline-block relative">
+                        <span className="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 mb-2 block">
                 Founder & President
+                        </span>
+                        <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 rounded-full"></div>
+                      </div>
               </div>
               
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                                         <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "800" }}>
                 Javeed Mirza
               </h3>
               
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
+                                                                                                                                                                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", fontSize: "22px", lineHeight: "1.8" }}>
                 Javeed Mirza, Founder and President of NEIEA… A visionary leader with global experience in social and political activism, teaching, business and in research. It was his passionate pursuit for ending inequity and injustice meted out to the marginalized, that made him strive for many decades and build NEIEA…. a low-cost scalable model of education that has the potential to transform global education.
               </p>
 
               {/* Learn More About Leadership */}
-              <div className="pt-2">
-                <a
-                  href="/about-us/leadership"
-                  className="btn-blue inline-flex items-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Meet Our Full Leadership Team
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                    <div className="pt-4">
+                                    <a
+                      href="/about-us/leadership"
+                      className="btn-blue inline-flex items-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 text-lg uppercase"
+                    >
+                      Meet Our Full Leadership Team
+                      <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </a>
+                    </div>
               </div>
             </div>
           </div>
@@ -247,328 +458,579 @@ const Home: React.FC = () => {
       </div>
 
       {/* Innovation Section */}
-      <div className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+      <div className="py-8 sm:py-10 lg:py-12 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-orange-200 to-yellow-200 rounded-full opacity-20 blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-green-200 to-blue-200 rounded-full opacity-15 blur-lg animate-bounce" style={{ animationDelay: '2s' }}></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center">
             {/* Left: Innovation Content */}
-            <div className="order-1 lg:order-1">
-              <div className="inline-flex items-center px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold mb-4">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                </svg>
-                Innovation
-              </div>
+            <div className="order-1 lg:order-1 animate-fade-in-up">
               
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              {/* Enhanced Title with Gradient and Animation */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 mb-4 leading-tight animate-fade-in-up" style={{ fontFamily: "'Poppins', sans-serif", animationDelay: '0.3s' }}>
                 Innovation
               </h2>
               
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                NEIEA has developed innovative approaches to advance its Vision and Mission. These include: a Blended Learning Model that integrates online teaching with onsite learning through advanced technology and pedagogy; a Partnering Model that fosters collective growth; a Flexible Learning System offering live sessions 18 hours a day, 7 days a week; and a Low-Cost and Free Education Model that makes quality education accessible and affordable for all
-              </p>
+              {/* Enhanced Description with Glass Effect and Animation */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-white/20 mb-6 transform hover:scale-105 transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                <p className="text-gray-700" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", fontSize: "22px", lineHeight: "1.8" }}>
+                  NEIEA has developed <span className="font-semibold text-blue-600 animate-pulse">innovative approaches</span> to advance its Vision and Mission. These include: a <span className="font-semibold text-purple-600">Blended Learning Model</span> that integrates online teaching with onsite learning through advanced technology and pedagogy; a <span className="font-semibold text-orange-600">Partnering Model</span> that fosters collective growth; a <span className="font-semibold text-green-600">Flexible Learning System</span> offering live sessions 18 hours a day, 7 days a week; and a <span className="font-semibold text-red-600">Low-Cost and Free Education Model</span> that makes quality education accessible and affordable for all.
+                </p>
+              </div>
 
-              {/* Learn More About Our Working Model */}
-              <div className="pt-2">
+              {/* Enhanced Call to Action with Animation */}
+              <div className="pt-2 animate-fade-in-up flex justify-center" style={{ animationDelay: '0.9s' }}>
                 <a
                   href="/about-us/working-model"
-                  className="inline-flex items-center text-[#007AA4] hover:text-blue-700 font-semibold transition-colors duration-200"
+                  className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg relative overflow-hidden"
                 >
-                  Learn About Our Working Model
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="relative z-10">Learn About Our Working Model</span>
+                  <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
+                  {/* Animated background effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
               </div>
             </div>
 
-            {/* Right: Innovation Image */}
-            <div className="order-2 lg:order-2">
-              <img
-                src="/home/innovation.png"
-                alt="Innovation in Education"
-                className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[400px] sm:max-h-[500px] lg:max-h-none"
-              />
+            {/* Right: Innovation Image with Enhanced Animation */}
+            <div className="order-2 lg:order-2 animate-fade-in-right">
+              <div className="relative group">
+                {/* Animated gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl transform group-hover:scale-105 transition-transform duration-500 animate-pulse"></div>
+                
+                {/* Main image with animation */}
+                <img
+                  src="/home/innovation.png"
+                  alt="Innovation in Education"
+                  className="relative w-full h-auto rounded-2xl shadow-2xl object-cover max-h-[400px] sm:max-h-[500px] lg:max-h-none transform group-hover:scale-105 transition-transform duration-500 animate-fade-in-up"
+                  style={{ animationDelay: '0.3s' }}
+                />
+                
+                {/* Floating animated elements */}
+                <div className="absolute top-4 right-4 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ animationDelay: '1s' }}>
+                  <svg className="w-8 h-8 text-blue-600 animate-spin-slow" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                
+                <div className="absolute bottom-4 left-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ animationDelay: '1.5s' }}>
+                  <svg className="w-6 h-6 text-purple-600 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                {/* Additional floating element */}
+                <div className="absolute top-1/2 left-4 w-10 h-10 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center shadow-lg animate-ping" style={{ animationDelay: '2s' }}>
+                  <div className="w-6 h-6 bg-white rounded-full"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
+        {/* Custom CSS for animations */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes fade-in-up {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            @keyframes fade-in-down {
+              from {
+                opacity: 0;
+                transform: translateY(-30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            @keyframes fade-in-right {
+              from {
+                opacity: 0;
+                transform: translateX(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            
+            @keyframes spin-slow {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
+            
+            .animate-fade-in-up {
+              animation: fade-in-up 0.8s ease-out forwards;
+            }
+            
+            .animate-fade-in-down {
+              animation: fade-in-down 0.8s ease-out forwards;
+            }
+            
+            .animate-fade-in-right {
+              animation: fade-in-right 0.8s ease-out forwards;
+            }
+            
+            .animate-spin-slow {
+              animation: spin-slow 3s linear infinite;
+            }
+          `
+        }} />
       </div>
 
       {/* Partnerships Section */}
-      <div className="py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Left: Partnership Image */}
-            <div className="order-2 lg:order-1">
-              <img
-                src="/home/partnering.png"
-                alt="Collective Working Through Partnerships"
-                className="w-full rounded-lg shadow-lg"
-              />
+      <div className="py-8 sm:py-10 lg:py-12 relative overflow-hidden" style={{
+        backgroundImage: "url('/Whisk_228989cd07.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}>
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-green-200 to-teal-200 rounded-full opacity-20 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-blue-200 to-green-200 rounded-full opacity-20 blur-xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-gradient-to-r from-teal-200 to-blue-200 rounded-full opacity-15 blur-lg animate-bounce" style={{ animationDelay: '2.5s' }}></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center">
+            {/* Left: Partnership Image with Enhanced Animation */}
+            <div className="order-2 lg:order-1 animate-fade-in-left">
+              <div className="relative group">
+                {/* Animated gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-teal-400/20 rounded-2xl transform group-hover:scale-105 transition-transform duration-500 animate-pulse"></div>
+                
+                {/* Main image with animation */}
+                <img
+                  src="/home/partnering.png"
+                  alt="Collective Working Through Partnerships"
+                  className="relative w-full h-auto rounded-2xl shadow-2xl object-cover transform group-hover:scale-105 transition-transform duration-500 animate-fade-in-up"
+                  style={{ animationDelay: '0.4s' }}
+                />
+                
+                {/* Floating animated elements */}
+                <div className="absolute top-6 right-6 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ animationDelay: '1.2s' }}>
+                  <svg className="w-8 h-8 text-green-600 animate-spin-slow" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                
+                <div className="absolute bottom-6 left-6 w-14 h-14 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg animate-bounce" style={{ animationDelay: '1.8s' }}>
+                  <svg className="w-7 h-7 text-teal-600 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                {/* Additional floating element */}
+                <div className="absolute top-1/2 right-8 w-12 h-12 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center shadow-lg animate-ping" style={{ animationDelay: '2.2s' }}>
+                  <div className="w-7 h-7 bg-white rounded-full"></div>
+                </div>
+              </div>
             </div>
 
             {/* Right: Partnership Content */}
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-semibold mb-4">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd" />
-                </svg>
-                Partnership
-              </div>
+            <div className="order-1 lg:order-2 animate-fade-in-up">
               
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+              {/* Enhanced Title with Gradient and Animation */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-teal-600 to-blue-600 mb-4 leading-tight animate-fade-in-up" style={{ fontFamily: "'Source Serif 4', serif", fontSize: "30px", animationDelay: '0.3s' }}>
                 Collective Working Through Partnerships
               </h2>
               
-              <div className="space-y-4">
-                <p className="text-base text-gray-600 leading-relaxed">
-                  NEIEA's partnership model is rooted in collective effort. Partner institutions provide infrastructure, student safety, and classroom coordination, while NEIEA delivers high-quality content, innovative pedagogy, and live teaching. Together, they actively involve parents in the learning process, ensuring stronger student outcomes. NEIEA also enhances the capacity of partner institutions by training their teachers in pedagogy, technology, classroom management, and English proficiency.
-                </p>
+              {/* Enhanced Description with Glass Effect and Animation */}
+              <div className="space-y-4 mb-6">
+                                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-white/20 transform hover:scale-105 transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                   <p className="text-gray-700" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", fontSize: "22px", lineHeight: "1.4" }}>
+                     NEIEA's partnership model is rooted in <span className="font-semibold text-green-600 animate-pulse">collective effort</span>. Partner institutions provide <span className="font-semibold text-teal-600">infrastructure, student safety, and classroom coordination</span>, while NEIEA delivers <span className="font-semibold text-blue-600">high-quality content, innovative pedagogy, and live teaching</span>. Together, they actively involve parents in the learning process, ensuring stronger student outcomes. NEIEA also enhances the capacity of partner institutions by training their teachers in pedagogy, technology, classroom management, and English proficiency.
+                   </p>
+                 </div>
                 
-                <p className="text-base text-gray-600 leading-relaxed">
-                  <strong className="text-gray-800">Open-Source Approach:</strong> NEIEA makes its content materials freely available to all institutions that wish to adopt and benefit from its model, reinforcing its commitment to equitable and collaborative education
-                </p>
+                                 <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-2xl p-4 shadow-lg border border-green-200/50 transform hover:scale-105 transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
+                   <p className="text-gray-700" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", fontSize: "22px", lineHeight: "1.4" }}>
+                     <strong className="text-green-700 text-lg">Open-Source Approach:</strong> NEIEA makes its content materials <span className="font-semibold text-teal-600">freely available</span> to all institutions that wish to adopt and benefit from its model, reinforcing its commitment to <span className="font-semibold text-blue-600">equitable and collaborative education</span>.
+                   </p>
+                 </div>
               </div>
 
-              {/* Learn More About Partnerships */}
-              <div className="pt-4">
+              {/* Enhanced Call to Action with Animation */}
+              <div className="pt-2 animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
                 <a
                   href="/partners"
-                  className="inline-flex items-center text-[#007AA4] hover:text-blue-700 font-semibold transition-colors duration-200"
+                  className="group inline-flex items-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg relative overflow-hidden"
                 >
-                  Explore Our Partnerships
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="relative z-10">Explore Our Partnerships</span>
+                  <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
+                  {/* Animated background effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
               </div>
             </div>
           </div>
         </div>
+        
+        {/* Custom CSS for animations */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes fade-in-left {
+              from {
+                opacity: 0;
+                transform: translateX(-30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            
+            .animate-fade-in-left {
+              animation: fade-in-left 0.8s ease-out forwards;
+            }
+          `
+        }} />
       </div>
 
       {/* Statistics Section */}
-      <div className="py-16 bg-gradient-to-r from-[#007AA4] via-[#007AA4] to-[#007AA4] text-white relative overflow-hidden">
+      <div className="py-16 bg-gradient-to-br from-blue-600 via-teal-600 to-blue-800 text-white relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/5 rounded-full blur-lg animate-bounce" style={{ animationDelay: '2s' }}></div>
+        
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our Impact in Numbers
-            </h2>
-            <p className="text-lg text-blue-100 max-w-2xl mx-auto">
-              Transforming education through innovative approaches and meaningful partnerships
-            </p>
-          </div> */}
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">16</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Online Courses
+                     {/* Enhanced Title */}
+           <div className="text-center mb-12 animate-fade-in-up">
+             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+               Our Impact in Numbers
+             </h2>
+             <p className="text-xl text-blue-100 max-w-3xl mx-auto" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+               Transforming education through innovative approaches and meaningful partnerships
+             </p>
+           </div>
+          
+          {/* First Row - Enhanced Statistics */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 group-hover:from-yellow-200 group-hover:to-orange-200 transition-all duration-300">
+                  16<span className="text-3xl md:text-4xl lg:text-5xl text-yellow-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Online Courses
+               </div>
             </div>
             
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">63</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Live Online Classes
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-300 group-hover:from-green-200 group-hover:to-teal-200 transition-all duration-300">
+                  63<span className="text-3xl md:text-4xl lg:text-5xl text-green-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Live Online Classes
+               </div>
             </div>
             
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">94</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Partnerships
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-300">
+                  94<span className="text-3xl md:text-4xl lg:text-5xl text-purple-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Partnerships
+               </div>
             </div>
             
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">2,000</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Teachers Trained
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300 group-hover:from-blue-200 group-hover:to-cyan-200 transition-all duration-300">
+                  2,000<span className="text-3xl md:text-4xl lg:text-5xl text-blue-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Teachers Trained
+               </div>
             </div>
           </div>
 
-          {/* Second Row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">6,182</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Institutional Enrollments
+          {/* Second Row - Enhanced Statistics */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '1.0s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-red-300 to-pink-300 group-hover:from-red-200 group-hover:to-pink-200 transition-all duration-300">
+                  6,182<span className="text-3xl md:text-4xl lg:text-5xl text-red-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Institutional Enrollments
+               </div>
             </div>
             
-            <div className="text-center p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">10,612</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Individual Enrollments
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300 group-hover:from-indigo-200 group-hover:to-purple-200 transition-all duration-300">
+                  10,612<span className="text-3xl md:text-4xl lg:text-5xl text-indigo-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-indigo-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Individual Enrollments
+               </div>
             </div>
             
-            <div className="text-center sm:col-span-2 lg:col-span-1 p-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105 cursor-pointer">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300">16,801+</div>
-              <div className="text-lg md:text-xl font-light text-blue-100">
-                Total Enrollments
+            <div className="group text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 hover:scale-110 cursor-pointer animate-fade-in-up" style={{ animationDelay: '1.4s' }}>
+              <div className="relative">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 group-hover:from-yellow-200 group-hover:via-orange-200 group-hover:to-red-200 transition-all duration-300">
+                  16,801<span className="text-3xl md:text-4xl lg:text-5xl text-yellow-300 animate-pulse">+</span>
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-300 rounded-full animate-ping opacity-75"></div>
               </div>
+                             <div className="text-lg md:text-xl font-semibold text-blue-100 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                 Total Enrollments
+               </div>
             </div>
           </div>
 
-          {/* Call to Action */}
-          {/* <div className="text-center mt-12">
+          {/* Enhanced Call to Action */}
+          <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: '1.6s' }}>
             <a
               href="/about-us/reports-financials"
-              className="inline-flex items-center bg-white text-blue-800 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300 shadow-lg"
+              className="group inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-blue-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
             >
-              View Detailed Reports
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative z-10">View Detailed Reports</span>
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
-          </div> */}
+          </div>
         </div>
+        
+        {/* Custom CSS for animations */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes fade-in-up {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .animate-fade-in-up {
+              animation: fade-in-up 0.8s ease-out forwards;
+            }
+          `
+        }} />
       </div>
 
       {/* Testimonials Section */}
-      <div className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold mb-6">
-              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
-              </svg>
-              Testimonial
-            </div>
+      <div className="py-16 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-20 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-amber-200 to-yellow-200 rounded-full opacity-20 blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-gradient-to-r from-orange-200 to-yellow-200 rounded-full opacity-15 blur-lg animate-bounce" style={{ animationDelay: '2s' }}></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 animate-fade-in-up">
             
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 via-orange-600 to-amber-600 mb-6 animate-fade-in-up" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", animationDelay: '0.3s' }}>
               What People Say About NEIEA
             </h2>
             
-            <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8 animate-fade-in-up" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600", animationDelay: '0.6s' }}>
               Students, parents, educators, management experts, and community leaders recognize NEIEA's work as truly pathbreaking and transformative. Here are some examples:
             </p>
           </div>
 
-          {/* Testimonial Cards Preview */}
+          {/* Enhanced Testimonial Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {/* Sample Testimonial Card 1 */}
-            <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            {/* Enhanced Testimonial Card 1 */}
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-yellow-200/30 hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  S
+                <div className="relative">
+                  <div className="w-14 h-14 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    S
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-ping">
+                    ★
+                  </div>
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Student</h4>
-                  <p className="text-sm text-gray-600">Online Course Participant</p>
+                  <h4 className="font-bold text-gray-900 text-lg group-hover:text-yellow-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                    Student
+                  </h4>
+                  <p className="text-sm text-gray-600 group-hover:text-orange-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
+                    Online Course Participant
+                  </p>
                 </div>
               </div>
-              <div className="text-yellow-400 mb-3">
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+              <div className="text-yellow-400 mb-4 flex space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
-              <p className="text-gray-700 text-sm italic">
+              <p className="text-gray-700 text-sm italic leading-relaxed group-hover:text-gray-800 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
                 "NEIEA's innovative approach has transformed my learning experience..."
               </p>
             </div>
 
-            {/* Sample Testimonial Card 2 */}
-            <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            {/* Enhanced Testimonial Card 2 */}
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-yellow-200/30 hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  P
+                <div className="relative">
+                  <div className="w-14 h-14 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    P
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-ping" style={{ animationDelay: '0.5s' }}>
+                    ★
+                  </div>
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Parent</h4>
-                  <p className="text-sm text-gray-600">Community Member</p>
+                  <h4 className="font-bold text-gray-900 text-lg group-hover:text-yellow-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                    Parent
+                  </h4>
+                  <p className="text-sm text-gray-600 group-hover:text-orange-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
+                    Community Member
+                  </p>
                 </div>
               </div>
-              <div className="text-yellow-400 mb-3">
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+              <div className="text-yellow-400 mb-4 flex space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
-              <p className="text-gray-700 text-sm italic">
+              <p className="text-gray-700 text-sm italic leading-relaxed group-hover:text-gray-800 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
                 "The partnership model has significantly improved my child's education..."
               </p>
             </div>
 
-            {/* Sample Testimonial Card 3 */}
-            <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 md:col-span-2 lg:col-span-1">
+            {/* Enhanced Testimonial Card 3 */}
+            <div className="group bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-yellow-200/30 hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                  E
+                <div className="relative">
+                  <div className="w-14 h-14 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    E
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-ping" style={{ animationDelay: '1s' }}>
+                    ★
+                  </div>
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Educator</h4>
-                  <p className="text-sm text-gray-600">Partner Institution</p>
+                  <h4 className="font-bold text-gray-900 text-lg group-hover:text-yellow-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>
+                    Educator
+                  </h4>
+                  <p className="text-sm text-gray-600 group-hover:text-orange-600 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
+                    Partner Institution
+                  </p>
                 </div>
               </div>
-              <div className="text-yellow-400 mb-3">
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <svg className="w-5 h-5 inline-block" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+              <div className="text-yellow-400 mb-4 flex space-x-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 0.1}s` }}>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
-              <p className="text-gray-700 text-sm italic">
+              <p className="text-gray-700 text-sm italic leading-relaxed group-hover:text-gray-800 transition-colors duration-300" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
                 "NEIEA's teacher training program has enhanced our teaching capabilities..."
               </p>
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center">
+          {/* Enhanced Call to Action */}
+          <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.8s' }}>
             <a
               href="/about-us/testimonials"
-              className="btn-blue inline-flex items-center text-white px-4 py-2 rounded-lg font-semibold text-sm transition-colors duration-300 shadow-lg"
+              className="group inline-flex items-center bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
             >
-              Testimonials & Featured Stories
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative z-10">Testimonials & Featured Stories</span>
+              <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
           </div>
         </div>
+        
+        {/* Custom CSS for animations */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes fade-in-up {
+              from {
+                opacity: 0;
+                transform: translateY(30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            @keyframes fade-in-down {
+              from {
+                opacity: 0;
+                transform: translateY(-30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .animate-fade-in-up {
+              animation: fade-in-up 0.8s ease-out forwards;
+            }
+            
+            .animate-fade-in-down {
+              animation: fade-in-down 0.8s ease-out forwards;
+            }
+            
+            .animate-spin-slow {
+              animation: spin 3s linear infinite;
+            }
+          `
+        }} />
       </div>
     </div>
+     </>
   );
 };
 

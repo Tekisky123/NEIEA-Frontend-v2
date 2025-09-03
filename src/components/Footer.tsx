@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-[#994263] text-[#E5DED4]">
+        <footer className="bg-[#994263] text-[#E5DED4]" style={{ fontFamily: "'Source Serif 4', serif", fontSize: "15px" }}>
             {/* Main Footer Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Top Section: Logo, Subscription, and Social Links */}
@@ -137,6 +137,9 @@ const Footer: React.FC = () => {
                             <a href="/compliance" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Compliance Policies</a>
                         </div>
                     </div>
+                                                <div className="text-center mt-4 text-sm opacity-60">
+                                Developed by <a href="https://www.tekisky.com" target="_blank" rel="noopener noreferrer" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Tekisky Private Limited</a>
+                            </div>
                 </div>
             </div>
         </footer>
