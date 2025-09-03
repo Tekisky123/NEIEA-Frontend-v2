@@ -1,12 +1,13 @@
 import React from 'react';
 import Breadcrumb from '../../components/Breadcrumb';
 import useBreadcrumb from '../../hooks/useBreadcrumb';
-
+import Layout from '../../components/Layout';
 const ContactUs: React.FC = () => {
     const breadcrumbItems = useBreadcrumb();
     
     return (
-        <div className="min-h-screen bg-white">
+        <Layout>
+        {/* <div className="min-h-screen bg-white"> */}
             {/* Breadcrumb Navigation */}
             <Breadcrumb items={breadcrumbItems} />
             
@@ -77,7 +78,8 @@ const ContactUs: React.FC = () => {
                     </div>
                 </main>
             </div>
-        </div>
+        {/* </div> */}
+        </Layout>
     );
 };
 

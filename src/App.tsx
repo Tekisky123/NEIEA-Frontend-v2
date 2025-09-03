@@ -10,14 +10,22 @@ import Leadership from './pages/aboutUs/Leadership.tsx';
 import ReportsAndFinancials from './pages/aboutUs/ReportsAndFinancials.tsx';
 import TestimonialsFeaturedStories from './pages/aboutUs/TestimonialsFeaturedStories.tsx';
 import ContactUs from './pages/aboutUs/ContactUs.tsx';
+import AdminDashboard from './pages/dashboards/adminDashboard/AdminDashboard.tsx';
+import Login from './pages/Login.tsx';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={
+            <>
+            <Navbar />
+            <Home />
+            <Footer />
+            </>
+          } />
           <Route path="/about-us/introduction" element={<Introduction />} />
           <Route path="/about-us/leadership" element={<Leadership />} />
           <Route path="/about-us/reports-financials" element={<ReportsAndFinancials />} />
@@ -30,10 +38,14 @@ function App() {
           <Route path="/courses/:category" element={<Courses />} />
           <Route path="/partners/*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Partners - Coming Soon</h1></div>} />
           <Route path="/donation/*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Donation - Coming Soon</h1></div>} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
           {/* 404 Not Found Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
