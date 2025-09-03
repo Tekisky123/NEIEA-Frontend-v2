@@ -416,6 +416,18 @@ const Home: React.FC = () => {
                   alt="Javeed Mirza - Founder and President"
                        className="w-full h-auto object-contain max-h-[700px] lg:max-h-[800px]"
                 />
+                {/* Mobile-only button after leader image */}
+                <div className="block lg:hidden mt-6 text-center">
+                  <a
+                    href="/about-us/leadership"
+                    className="inline-flex items-center justify-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 text-base uppercase"
+                  >
+                    <span>MEET OUR FULL LEADERSHIP TEAM</span>
+                    <svg className="w-5 h-5 ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
             </div>
 
                    {/* Right: Leader Information */}
@@ -437,14 +449,14 @@ const Home: React.FC = () => {
                 Javeed Mirza, Founder and President of NEIEA… A visionary leader with global experience in social and political activism, teaching, business and in research. It was his passionate pursuit for ending inequity and injustice meted out to the marginalized, that made him strive for many decades and build NEIEA…. a low-cost scalable model of education that has the potential to transform global education.
               </p>
 
-              {/* Learn More About Leadership */}
-                    <div className="pt-4">
+               {/* Learn More About Leadership - Desktop Only */}
+               <div className="pt-4 hidden lg:block">
                                     <a
                       href="/about-us/leadership"
-                      className="btn-blue inline-flex items-center justify-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base md:text-lg uppercase text-center max-w-full sm:max-w-none"
+                   className="btn-blue inline-flex items-center justify-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base md:text-lg uppercase text-center max-w-full sm:max-w-none"
                     >
-                      <span className="whitespace-normal sm:whitespace-nowrap">Meet Our Full Leadership Team</span>
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <span className="whitespace-normal sm:whitespace-nowrap">Meet Our Full Leadership Team</span>
+                   <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </a>
