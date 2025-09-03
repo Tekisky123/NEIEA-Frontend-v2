@@ -94,33 +94,10 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Quick Links */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
-                    <div>
-                        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider opacity-90">LEARN MORE</h4>
-                        <ul className="space-y-1.5">
-                            <li><a href="/our-works/teachers-training" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Teachers Training &gt;</a></li>
-                            <li><a href="/our-works/education/girls-education" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Girl's Education &gt;</a></li>
-                            <li><a href="/partners/join" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Partner with Us &gt;</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider opacity-90">TAKE ACTION</h4>
-                        <ul className="space-y-1.5">
-                            <li><a href="/donation/donate" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Donate &gt;</a></li>
-                            <li><a href="/donation/volunteer" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Volunteer &gt;</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider opacity-90">ABOUT US</h4>
-                        <ul className="space-y-1.5">
-                            <li><a href="/about-us/introduction" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Introduction &gt;</a></li>
-                            <li><a href="/about-us/media-events/gallery" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Media &gt;</a></li>
-                            <li><a href="/about-us/reports-financials" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Reports & Financials &gt;</a></li>
-                            <li><a href="/about-us/contact" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Contact Us &gt;</a></li>
-                        </ul>
-                    </div>
+                <div className="flex flex-col sm:flex-row justify-start items-start space-y-4 sm:space-y-0 sm:space-x-8">
+                    <a href="/about-us/testimonials" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Featured Stories &gt;</a>
+                    <a href="/about-us/contact" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Contact Us &gt;</a>
+                    <a href="/careers" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Careers &gt;</a>
                 </div>
             </div>
 

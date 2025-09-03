@@ -283,10 +283,10 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'ourwork2' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="Partnering Institutions" href="/partners/institutions">Partnering Institutions</a>
+              <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
             </li>
             <li>
-              <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
+              <a className="dropdown-item" title="Partnering Institutions" href="/partners/institutions">Partnering Institutions</a>
             </li>
             <li>
               <a className="dropdown-item" title="Global Partners" href="/partners/global">Global Partners</a>
@@ -313,6 +313,9 @@ const Navbar: React.FC = () => {
             </li>
             <li>
               <a className="dropdown-item" title="Volunteer" href="/donation/volunteer">Volunteer</a>
+            </li>
+            <li>
+              <a className="dropdown-item" title="Donate" href="/donation/donate">Donate</a>
             </li>
           </ul>
         </li>

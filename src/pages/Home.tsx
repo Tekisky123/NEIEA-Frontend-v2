@@ -162,7 +162,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-[#E5DED4] m-0 p-0">
       {/* Hero Image Slider - Full View */}
       <div 
-        className="relative overflow-hidden mt-[40px] xl:mt-[115px] sm:mt-[35px] h-[calc(100vh-70px)] xl:h-[calc(100vh-140px)] sm:h-[calc(100vh-60px)] min-h-[300px] max-h-[800px] touch-pan-y"
+        className="relative overflow-hidden mt-[40px] xl:mt-[115px] sm:mt-[35px] h-[calc(100vh-70px)] xl:h-[calc(100vh-0px)] sm:h-[calc(100vh-60px)] min-h-[300px] max-h-[800px] touch-pan-y"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -170,14 +170,13 @@ const Home: React.FC = () => {
         {heroImages.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover object-center select-none pointer-events-none"
+              className="w-full h-full object-cover xl:object-fit object-center select-none pointer-events-none"
             />
           </div>
         ))}
@@ -209,8 +208,7 @@ const Home: React.FC = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 rounded-full transition-all duration-300 touch-manipulation ${
-                index === currentSlide 
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 rounded-full transition-all duration-300 touch-manipulation ${index === currentSlide
                   ? 'bg-white scale-110 shadow-lg' 
                   : 'bg-white bg-opacity-60 hover:bg-opacity-80 active:bg-opacity-90'
               }`}
@@ -443,10 +441,10 @@ const Home: React.FC = () => {
                     <div className="pt-4">
                                     <a
                       href="/about-us/leadership"
-                      className="btn-blue inline-flex items-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 text-lg uppercase"
+                      className="btn-blue inline-flex items-center justify-center bg-[#007AA4] hover:bg-[#007AA4] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base md:text-lg uppercase text-center max-w-full sm:max-w-none"
                     >
-                      Meet Our Full Leadership Team
-                      <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="whitespace-normal sm:whitespace-nowrap">Meet Our Full Leadership Team</span>
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </a>
@@ -485,10 +483,10 @@ const Home: React.FC = () => {
               <div className="pt-2 animate-fade-in-up flex justify-center" style={{ animationDelay: '0.9s' }}>
                 <a
                   href="/about-us/working-model"
-                  className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg relative overflow-hidden"
+                    className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base md:text-lg relative overflow-hidden text-center max-w-full sm:max-w-none"
                 >
-                  <span className="relative z-10">Learn About Our Working Model</span>
-                  <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="relative z-10 whitespace-normal sm:whitespace-nowrap">Learn About Our Working Model</span>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                   {/* Animated background effect */}
@@ -675,10 +673,10 @@ const Home: React.FC = () => {
               <div className="pt-2 animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
                 <a
                   href="/partners"
-                  className="group inline-flex items-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg relative overflow-hidden"
+                    className="group inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base md:text-lg relative overflow-hidden text-center max-w-full sm:max-w-none"
                 >
-                  <span className="relative z-10">Explore Our Partnerships</span>
-                  <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="relative z-10 whitespace-normal sm:whitespace-nowrap">Explore Our Partnerships</span>
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
                   {/* Animated background effect */}
@@ -979,10 +977,10 @@ const Home: React.FC = () => {
           <div className="text-center animate-fade-in-up" style={{ animationDelay: '1.8s' }}>
             <a
               href="/about-us/testimonials"
-              className="group inline-flex items-center bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
+                className="group inline-flex items-center justify-center bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base md:text-lg relative overflow-hidden text-center max-w-full sm:max-w-none"
             >
-              <span className="relative z-10">Testimonials & Featured Stories</span>
-              <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="relative z-10 whitespace-normal sm:whitespace-nowrap">Testimonials & Featured Stories</span>
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300 relative z-10 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
