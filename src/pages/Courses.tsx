@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { courses, coursesCategory } from '../lib/courses';
 import { BookOpen, Clock, Users, ArrowRight, GraduationCap, IndianRupee } from 'lucide-react';
+import Layout from '../components/Layout';
 
 interface Course {
     id: number;
@@ -109,12 +110,13 @@ const Courses: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <Layout>
+        {/* <div className="min-h-screen bg-gray-50"> */}
             {/* Hero Section */}
             <div className="bg-gradient-to-r from-[#994263] to-[#7a3450] text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mt-20">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                    <div className="text-center mt-36">
+                        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                             Available Courses for Enrollments
                         </h1>
                         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
@@ -518,7 +520,8 @@ const Courses: React.FC = () => {
                     </div>
                 </div>
             )}
-        </div>
+        {/* </div> */}
+        </Layout>
     );
 };
 
