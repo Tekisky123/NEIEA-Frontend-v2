@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSubmenu, setActiveSubmenu] = useState<string[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll event for navbar transparency
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -60,7 +72,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-brand">
         <a href="/" title="Go to Home Page">
           <img
@@ -271,10 +283,10 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'ourwork2' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="Partnering Institutions" href="/partners/institutions">Partnering Institutions</a>
+              <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
             </li>
             <li>
-              <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
+              <a className="dropdown-item" title="Partnering Institutions" href="/partners/institutions">Partnering Institutions</a>
             </li>
             <li>
               <a className="dropdown-item" title="Global Partners" href="/partners/global">Global Partners</a>
@@ -301,6 +313,9 @@ const Navbar: React.FC = () => {
             </li>
             <li>
               <a className="dropdown-item" title="Volunteer" href="/donation/volunteer">Volunteer</a>
+            </li>
+            <li>
+              <a className="dropdown-item" title="Donate" href="/donation/donate">Donate</a>
             </li>
           </ul>
         </li>
