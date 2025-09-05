@@ -26,13 +26,19 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-            <Navbar />
-            <Home />
-            <Footer />
+              <Navbar />
+              <Home />
+              <Footer />
             </>
           } />
           <Route path="/about-us/introduction" element={<Introduction />} />
-          <Route path="/about-us/leadership" element={<Leadership />} />
+          <Route path="/about-us/leadership" element={
+            <>
+              <Navbar />
+              <Leadership />
+              <Footer />
+            </>
+          } />
           <Route path="/about-us/reports-financials" element={<ReportsAndFinancials />} />
           <Route path="/about-us/testimonials" element={<TestimonialsFeaturedStories />} />
           <Route path="/about-us/contact" element={<ContactUs />} />

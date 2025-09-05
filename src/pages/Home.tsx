@@ -8,8 +8,8 @@ const Home: React.FC = () => {
 
   // Images from public/home/ directory (consistent aspect ratio expected)
   const heroImageNames = [
-    'slider1',
-    'upscale_image_20250904_053936',
+    'slider1_upscale',
+    'slider2',
     'slider3',
     'slider4',
     'slider5',
@@ -234,11 +234,11 @@ const Home: React.FC = () => {
             <div className="absolute inset-0">
               <SlideImage
                 name={name}
-                alt={`Slide ${index + 1}`}
+              alt={`Slide ${index + 1}`}
                 className="w-full h-full object-contain sm:object-cover select-none pointer-events-none sharp-image bg-black"
                 position={focusPosition}
-              />
-            </div>
+            />
+          </div>
           </div>
           );
         })}
