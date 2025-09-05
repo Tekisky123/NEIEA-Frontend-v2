@@ -42,6 +42,9 @@ const courseSchema = z.object({
   level: z.enum(["beginner", "intermediate", "advanced"], {
     required_error: "Level is required",
   }),
+  category: z.enum(["english", "math", "science", "social-science", "technical", "financial-literacy", "nios", "cbse", "other"], {
+    required_error: "Category is required",
+  }),
   duration: z.string().min(1, "Duration is required"),
   targetAudience: z.array(z.string()).min(1, "Target audience is required"),
   fees: z.number().min(0, "Fees must be a positive number"),
@@ -66,6 +69,7 @@ const NewCourse = () => {
       imageUrl: "",
       // instructor: "",
       level: undefined,
+      category: undefined,
       duration: "",
       targetAudience: [""],
       fees: 0,
@@ -93,6 +97,7 @@ const NewCourse = () => {
     formData.append("description", data.description);
     // formData.append("instructor", data.instructor);
     formData.append("level", data.level);
+    formData.append("category", data.category);
     formData.append("duration", data.duration);
     data.targetAudience.forEach((ta) => formData.append("targetAudience[]", ta));
     formData.append("fees", data.fees.toString());
@@ -188,14 +193,17 @@ const NewCourse = () => {
   }
 
   return (
-    <Card className="border-0 shadow-none rounded-none">
-      <CardHeader>
-        <CardTitle className="text-xl">Create New Course</CardTitle>
-        <CardDescription>
+    <div className="p-8 bg-white min-h-screen">
+      {/* Header Section */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-ngo-color1 mb-2">Create New Course</h1>
+        <p className="text-gray-600 text-lg">
           Fill in the details to create a new course
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+        </p>
+      </div>
+      
+      {/* Form Section */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -204,9 +212,13 @@ const NewCourse = () => {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Course Title *</FormLabel>
+                    <FormLabel className="text-sm font-semibold text-gray-700">Course Title *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter course title" {...field} />
+                      <Input 
+                        placeholder="Enter course title" 
+                        className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
+                        {...field} 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -230,9 +242,12 @@ const NewCourse = () => {
                 name="level"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Level *</FormLabel>
+                    <FormLabel className="text-sm font-semibold text-gray-700">Level *</FormLabel>
                     <FormControl>
-                      <select {...field} className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background">
+                      <select 
+                        {...field} 
+                        className="flex h-12 w-full items-center justify-between rounded-md border-2 border-gray-300 bg-white px-3 py-2 text-sm text-black focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20"
+                      >
                         <option value="">Select a level</option>
                         <option value="beginner">Beginner</option>
                         <option value="intermediate">Intermediate</option>
@@ -245,12 +260,43 @@ const NewCourse = () => {
               />
               <FormField
                 control={form.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-semibold text-gray-700">Category *</FormLabel>
+                    <FormControl>
+                      <select 
+                        {...field} 
+                        className="flex h-12 w-full items-center justify-between rounded-md border-2 border-gray-300 bg-white px-3 py-2 text-sm text-black focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20"
+                      >
+                        <option value="">Select a category</option>
+                        <option value="english">English</option>
+                        <option value="math">Math</option>
+                        <option value="science">Science</option>
+                        <option value="social-science">Social Science</option>
+                        <option value="technical">Technical</option>
+                        <option value="financial-literacy">Financial & Literacy</option>
+                        <option value="nios">NIOS</option>
+                        <option value="cbse">CBSE</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="duration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Duration *</FormLabel>
+                    <FormLabel className="text-sm font-semibold text-gray-700">Duration *</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., 8 weeks" {...field} />
+                      <Input 
+                        placeholder="e.g., 8 weeks" 
+                        className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
+                        {...field} 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -261,11 +307,12 @@ const NewCourse = () => {
                 name="fees"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Fees *</FormLabel>
+                    <FormLabel className="text-sm font-semibold text-gray-700">Fees *</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         placeholder="Enter course fees"
+                        className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
                         {...field}
                         onChange={(e) => field.onChange(parseInt(e.target.value))}
                       />
@@ -275,13 +322,14 @@ const NewCourse = () => {
                 )}
               />
               <FormItem>
-                <FormLabel>Course Image *</FormLabel>
+                <FormLabel className="text-sm font-semibold text-gray-700">Course Image *</FormLabel>
                 <FormControl>
                   <Input
                     type="file"
                     accept="image/*"
                     ref={fileInputRef}
                     onChange={onSelectFile}
+                    className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
                   />
                 </FormControl>
                 <div className="text-xs text-gray-500 mt-1">
@@ -295,9 +343,9 @@ const NewCourse = () => {
               </FormItem>
             </div>
             <Dialog open={isCropping} onOpenChange={setIsCropping}>
-              <DialogContent>
+              <DialogContent className="bg-white text-black">
                 <DialogHeader>
-                  <DialogTitle>Crop Image</DialogTitle>
+                  <DialogTitle className="text-lg font-semibold text-gray-700">Crop Image</DialogTitle>
                 </DialogHeader>
                 <div className="flex justify-center">
                   <ReactCrop
@@ -315,23 +363,33 @@ const NewCourse = () => {
                   </ReactCrop>
                 </div>
                 <DialogFooter>
-                  <Button variant="outline" onClick={() => setIsCropping(false)}>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setIsCropping(false)}
+                    className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50"
+                  >
                     Cancel
                   </Button>
-                  <Button onClick={handleCrop}>Crop Image</Button>
+                  <Button 
+                    onClick={handleCrop}
+                    className="bg-ngo-color1 hover:bg-ngo-color2 text-white"
+                  >
+                    Crop Image
+                  </Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
             {croppedImageUrl && (
               <div>
-                <FormLabel>Cropped Image Preview</FormLabel>
+                <FormLabel className="text-sm font-semibold text-gray-700">Cropped Image Preview</FormLabel>
                 <div className="mt-2 relative">
-                  <img src={croppedImageUrl} alt="Cropped" className="h-48 rounded-md" />
+                  <img src={croppedImageUrl} alt="Cropped" className="h-48 rounded-md border border-gray-200" />
                   <div className="absolute top-2 right-2 flex gap-2">
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => setIsCropping(true)}
+                      className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50"
                     >
                       Re-crop
                     </Button>
@@ -346,6 +404,7 @@ const NewCourse = () => {
                           fileInputRef.current.value = "";
                         }
                       }}
+                      className="bg-red-600 hover:bg-red-700 text-white"
                     >
                       Remove
                     </Button>
@@ -358,11 +417,11 @@ const NewCourse = () => {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Overview *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700">Overview *</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Enter course overview - What will be taught?"
-                      className="min-h-[120px]"
+                      className="min-h-[120px] border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
                       {...field}
                     />
                   </FormControl>
@@ -375,10 +434,11 @@ const NewCourse = () => {
               name="targetAudience"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Target Audience *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700">Target Audience *</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Enter target audience, separated by commas"
+                      className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
                       {...field}
                       onChange={(e) => field.onChange(e.target.value.split(','))}
                     />
@@ -392,9 +452,13 @@ const NewCourse = () => {
               name="whatsappLink"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>WhatsApp Link *</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700">WhatsApp Link *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter WhatsApp link" {...field} />
+                    <Input 
+                      placeholder="Enter WhatsApp link" 
+                      className="h-12 border-2 border-gray-300 focus:border-ngo-color1 focus:ring-2 focus:ring-ngo-color1/20 bg-white text-black"
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -406,15 +470,16 @@ const NewCourse = () => {
               name="isNew"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Course Status</FormLabel>
+                  <FormLabel className="text-sm font-semibold text-gray-700">Course Status</FormLabel>
                   <FormControl>
                     <div className="flex items-start space-x-3 space-y-0">
                       <Checkbox
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        className="border-2 border-gray-300 data-[state=checked]:bg-ngo-color1 data-[state=checked]:border-ngo-color1"
                       />
                       <div className="space-y-1 leading-none">
-                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-700">
                           Mark as New
                         </label>
                         <p className="text-sm text-gray-500">
@@ -434,7 +499,7 @@ const NewCourse = () => {
               render={() => (
                 <FormItem>
                   <div className="mb-4">
-                    <FormLabel className="text-base">Convenient Time Slots *</FormLabel>
+                    <FormLabel className="text-base font-semibold text-gray-700">Convenient Time Slots *</FormLabel>
                     <div className="text-sm text-gray-500 mt-1">
                       Select all time slots that are available for this course
                     </div>
@@ -479,9 +544,10 @@ const NewCourse = () => {
                                           )
                                         )
                                   }}
+                                  className="border-2 border-gray-300 data-[state=checked]:bg-ngo-color1 data-[state=checked]:border-ngo-color1"
                                 />
                               </FormControl>
-                              <FormLabel className="text-sm font-normal">
+                              <FormLabel className="text-sm font-normal text-gray-700">
                                 {timeSlot}
                               </FormLabel>
                             </FormItem>
@@ -495,19 +561,19 @@ const NewCourse = () => {
               )}
             />
             
-            <div className="flex justify-center pt-4">
+            <div className="flex justify-center pt-6">
               <Button
                 type="submit"
-                className="w-full md:w-auto bg-ngo-color4 hover:bg-ngo-color2 text-white font-bold shadow-lg border-2 transition-all duration-300"
+                className="w-full md:w-auto bg-ngo-color4 hover:bg-ngo-color2 text-white font-bold shadow-lg border-2 transition-all duration-300 px-8 py-3 text-lg"
               >
-                <PlusCircle className="w-4 h-4 mr-2" />
+                <PlusCircle className="w-5 h-5 mr-2" />
                 Create Course
               </Button>
             </div>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

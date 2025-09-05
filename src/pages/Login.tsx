@@ -74,12 +74,12 @@ const Login = () => {
 
   return (
     <Layout>
-      <section className="py-24 bg-gradient-to-br from-ngo-color4/5 to-ngo-color1/5">
+      <section className="min-h-screen bg-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
-            <Card className="border-0 shadow-lg">
-              <CardHeader className="text-center space-y-4">
-                <CardTitle className="text-3xl font-bold text-ngo-color6">
+            <Card className="border border-gray-200 shadow-xl bg-white">
+              <CardHeader className="text-center space-y-6 pb-8">
+                <CardTitle className="text-4xl font-bold text-ngo-color1">
                   Welcome Back
                 </CardTitle>
 
@@ -88,21 +88,31 @@ const Login = () => {
                   className="w-full"
                   onValueChange={(value) => setUserType(value as UserType)}
                 >
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="donor">Donor</TabsTrigger>
-                    <TabsTrigger value="admin">Admin</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-2 bg-gray-100">
+                    <TabsTrigger 
+                      value="donor" 
+                      className="data-[state=active]:bg-ngo-color1 data-[state=active]:text-white text-black"
+                    >
+                      Donor
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="admin"
+                      className="data-[state=active]:bg-ngo-color1 data-[state=active]:text-white text-black"
+                    >
+                      Admin
+                    </TabsTrigger>
                   </TabsList>
                 </Tabs>
 
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-lg">
                   Sign in to your {userType} account
                 </p>
               </CardHeader>
 
-              <CardContent>
+              <CardContent className="px-8 pb-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-700">
+                    <Label htmlFor="email" className="text-gray-800 font-semibold text-base">
                       Email Address
                     </Label>
                     <Input
@@ -110,7 +120,7 @@ const Login = () => {
                       type="email"
                       placeholder="your@email.com"
                       {...register("email")}
-                      className={`${errors.email ? "border-red-500" : ""}`}
+                      className={`h-12 text-base border-2 ${errors.email ? "border-red-500" : "border-gray-300 focus:border-ngo-color1"} focus:ring-2 bg-white text-black focus:ring-ngo-color1/20`}
                     />
                     {errors.email && (
                       <p className="text-red-500 text-sm">
@@ -121,12 +131,12 @@ const Login = () => {
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <Label htmlFor="password" className="text-gray-700">
+                      <Label htmlFor="password" className="text-gray-800 font-semibold text-base">
                         Password
                       </Label>
                       <Link
                         to={`/forgot-password?userType=${userType}`}
-                        className="text-sm text-ngo-color4 hover:underline"
+                        className="text-sm text-ngo-color1 hover:text-ngo-color5 hover:underline font-medium"
                       >
                         Forgot password?
                       </Link>
@@ -137,11 +147,11 @@ const Login = () => {
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
                         {...register("password")}
-                        className={`${errors.password ? "border-red-500" : ""}`}
+                        className={`bg-white text-black h-12 text-base border-2 pr-12 ${errors.password ? "border-red-500" : "border-gray-300 focus:border-ngo-color1"} focus:ring-2 focus:ring-ngo-color1/20`}
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-ngo-color1 transition-colors"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
@@ -160,7 +170,7 @@ const Login = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-ngo-color4 hover:bg-ngo-color4/90 py-6 text-lg"
+                    className="w-full bg-ngo-color1 hover:bg-ngo-color5 py-6 text-lg font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300"
                     disabled={isLoading}
                   >
                     {isLoading ? "Signing in..." : "Sign In"}

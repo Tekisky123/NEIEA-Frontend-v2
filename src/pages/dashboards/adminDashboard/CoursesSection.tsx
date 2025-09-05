@@ -10,11 +10,8 @@ import {
 } from "@/components/ui/card";
 import {
   Table,
-  TableBody,
-  TableCell,
   TableHead,
   TableHeader,
-  TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,12 +29,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { 
-  MoreHorizontal, 
-  MessageCircle, 
-  Clock, 
-  Users, 
-  DollarSign, 
+import {
+  MoreHorizontal,
+  MessageCircle,
+  Clock,
+  Users,
+  DollarSign,
   Target,
   GraduationCap,
   ExternalLink,
@@ -54,7 +51,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { SectionLoader } from "@/components/LoadingSpinner";
-import CourseCard from "@/components/CourseCard";
+// import CourseCard from "@/components/CourseCard";
+import CourseCardNew from "@/components/CourseCardNew";
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import { FaRupeeSign } from "react-icons/fa";
@@ -271,45 +269,56 @@ const CoursesSection = ({ searchQuery = "" }) => {
   };
 
   return (
-    <Card className="border-0 rounded-none shadow-none">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <div>
-            <CardTitle className="text-xl">Courses Management</CardTitle>
-            <CardDescription>
-              Manage all available courses in the system
-            </CardDescription>
-          </div>
-          <Button onClick={handleDownloadExcel} className="bg-ngo-color6 text-white font-bold">
-            Download
-          </Button>
+    <div className="p-8 bg-white min-h-screen">
+      {/* Header Section */}
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-2">
+          <h1 className="text-3xl font-bold text-ngo-color1">Courses Management</h1>
+          {
+            filteredCourses.length !== 0 && (
+
+              <Button
+                onClick={handleDownloadExcel}
+                className="bg-ngo-color2 hover:bg-ngo-color6 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+              >
+                Download
+              </Button>
+            )
+          }
         </div>
-      </CardHeader>
-      <CardContent>
+        <p className="text-gray-600 text-lg">
+          Manage all available courses in the system
+        </p>
+      </div>
+
+      {/* Content Section */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         {loading ? (
-          <SectionLoader />
+          <div className="p-8">
+            <SectionLoader />
+          </div>
         ) : filteredCourses.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No courses found</p>
+            <p className="text-gray-500 text-lg">No courses found</p>
           </div>
         ) : (
-          <div className="overflow-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-16">Image</TableHead>
-                  <TableHead>Course Details</TableHead>
-                  <TableHead className="hidden lg:table-cell">Level & Fees</TableHead>
-                  <TableHead className="hidden md:table-cell">Target Audience</TableHead>
-                  <TableHead className="hidden xl:table-cell">WhatsApp Group Link</TableHead>
-                  <TableHead>Students</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 w-20">Image</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Course Details</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 hidden lg:table-cell">Level & Fees</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 hidden md:table-cell">Target Audience</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 hidden xl:table-cell">WhatsApp Group Link</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Students</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
                 {paginatedCourses.map((course) => (
-                  <TableRow key={course._id} className="hover:bg-gray-50">
-                    <TableCell className="w-16">
+                  <tr key={course._id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4">
                       <div className="relative">
                         <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
                           {course.imageUrl ? (
@@ -324,15 +333,15 @@ const CoursesSection = ({ searchQuery = "" }) => {
                         </div>
                         {course.isNew && (
                           <div className="absolute -top-1 -right-1">
-                            <Badge className="bg-green-100 text-green-800 border-green-200 text-xs px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="bg-green-100 text-green-800 border border-green-200 text-xs px-1.5 py-0.5 rounded-full flex items-center gap-1">
                               <Sparkles className="w-3 h-3" />
                               New
-                            </Badge>
+                            </span>
                           </div>
                         )}
                       </div>
-                    </TableCell>
-                    <TableCell>
+                    </td>
+                    <td>
                       <div className="space-y-2">
                         <div className="flex items-start gap-2">
                           <h3 className="font-semibold text-sm text-gray-900 line-clamp-1">
@@ -355,30 +364,30 @@ const CoursesSection = ({ searchQuery = "" }) => {
                           )}
                         </div>
                       </div>
-                    </TableCell>
-                    <TableCell className="hidden lg:table-cell">
+                    </td>
+                    <td className="hidden lg:table-cell">
                       <div className="space-y-2">
-                        <Badge className={getLevelColor(course.level)}>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getLevelColor(course.level)}`}>
                           {course.level?.charAt(0).toUpperCase() + course.level?.slice(1)}
-                        </Badge>
+                        </span>
                         <div className="flex items-center gap-1 text-sm text-gray-700">
                           <FaRupeeSign className="w-4 h-4" />
                           <span className="font-medium">{course.fees || 0}</span>
                         </div>
                       </div>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
+                    </td>
+                    <td className="hidden md:table-cell">
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <Target className="w-3 h-3" />
                         <span className="line-clamp-2">
-                          {Array.isArray(course.targetAudience) 
+                          {Array.isArray(course.targetAudience)
                             ? course.targetAudience.join(", ")
                             : course.targetAudience || "Not specified"
                           }
                         </span>
                       </div>
-                    </TableCell>
-                    <TableCell className="hidden xl:table-cell">
+                    </td>
+                    <td className="hidden xl:table-cell">
                       {course.whatsappLink && (
                         <a
                           href={course.whatsappLink}
@@ -391,64 +400,73 @@ const CoursesSection = ({ searchQuery = "" }) => {
                           <ExternalLink className="w-2 h-2" />
                         </a>
                       )}
-                    </TableCell>
-                    <TableCell>
+                    </td>
+                    <td>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium">
                           {course.applicants?.length || 0}
                         </span>
                         {course.applicants?.length > 0 && (
-                          <Button
-                            variant="link"
-                            className="text-xs text-blue-600 p-0 h-auto"
+                          <button
+                            className="text-xs text-blue-600 hover:text-blue-700 hover:underline"
                             onClick={() => {
                               setSelectedCourse(course);
                               setViewStudents(true);
                             }}
                           >
                             View
-                          </Button>
+                          </button>
                         )}
                       </div>
-                    </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem
-                            onClick={() => navigate(`/admin/dashboard/course/edit/${course._id}`)}
-                          >
-                            Edit
-                          </DropdownMenuItem>
-                          <DropdownMenuItem
-                            onClick={() => {
-                              setSelectedCourse(course);
-                              setIsDeleting(true);
-                            }}
-                          >
-                            Delete
-                          </DropdownMenuItem>
-                          <DropdownMenuItem
-                            onClick={() => {
-                              setSelectedCourse(course);
-                              setViewCourseCard(true);
-                            }}
-                          >
-                            View Details
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <div className="flex justify-center">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0 hover:bg-gray-100 rounded-full flex items-center justify-center border border-gray-200"
+                            >
+                              <span className="sr-only">Open menu</span>
+                              <MoreHorizontal className="h-4 w-4 text-gray-600" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="w-48 bg-white shadow-lg border border-gray-200 rounded-md">
+                            <DropdownMenuItem
+                              onClick={() => navigate(`/admin/dashboard/course/edit/${course._id}`)}
+                              className="cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 text-black"
+                            >
+                              Edit
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => {
+                                setSelectedCourse(course);
+                                setIsDeleting(true);
+                              }}
+                              className="cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 text-red-600 focus:text-red-600"
+                            >
+                              Delete
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => {
+                                setSelectedCourse(course);
+                                setViewCourseCard(true);
+                              }}
+                              className="cursor-pointer px-4 py-2 text-sm hover:bg-gray-100 text-black"
+                            >
+                              View Details
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </td>
+                  </tr>
                 ))}
-              </TableBody>
-            </Table>
+              </tbody>
+            </table>
             {/* Pagination Controls */}
-            <div className="flex justify-end items-center mt-4 gap-2">
+            <div className="flex text-black justify-end items-center mt-4 gap-2">
               <Button
                 variant="outline"
                 disabled={currentPage === 1}
@@ -470,14 +488,20 @@ const CoursesSection = ({ searchQuery = "" }) => {
             </div>
           </div>
         )}
-      </CardContent>
-      <CardFooter className="flex justify-between text-sm text-muted-foreground">
-        Showing <strong>{paginatedCourses.length}</strong> of{" "}
-        <strong>{filteredCourses.length}</strong> courses
-      </CardFooter>
+
+        {/* Pagination Info */}
+        <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+          <div className="flex justify-between text-sm text-gray-600">
+            <span>
+              Showing <strong>{paginatedCourses.length}</strong> of{" "}
+              <strong>{filteredCourses.length}</strong> courses
+            </span>
+          </div>
+        </div>
+      </div>
       {/* View Students Dialog */}
       <Dialog open={viewStudents} onOpenChange={setViewStudents}>
-        <DialogContent className="max-w-7xl max-h-[85vh] overflow-hidden">
+        <DialogContent className="bg-white text-black max-w-7xl max-h-[85vh] overflow-hidden">
           <DialogHeader>
             <div className="flex justify-between items-center">
               <DialogTitle className="text-xl">
@@ -494,7 +518,7 @@ const CoursesSection = ({ searchQuery = "" }) => {
             <div className="overflow-auto max-h-[70vh]">
               <Table>
                 <TableHeader>
-                  <TableRow>
+                  <tr>
                     <TableHead className="w-12">Avatar</TableHead>
                     <TableHead>Full Name</TableHead>
                     <TableHead>Contact Info</TableHead>
@@ -505,35 +529,35 @@ const CoursesSection = ({ searchQuery = "" }) => {
                     <TableHead>Applied On</TableHead>
                     <TableHead>Payment</TableHead>
                     <TableHead className="w-32">Message</TableHead>
-                  </TableRow>
+                  </tr>
                 </TableHeader>
-                <TableBody>
+                <tbody>
                   {selectedCourse.applicants.map((applicant) => (
-                    <TableRow key={applicant._id} className="hover:bg-gray-50">
-                      <TableCell className="w-12">
+                    <tr key={applicant._id} className="hover:bg-gray-50">
+                      <td className="w-12">
                         <div className="flex items-center justify-center">
                           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
                             <StudentIcon className="w-4 h-4 text-blue-600" />
                           </div>
-                                                     {applicant.isStudent === "Yes" && (
-                             <Badge className="ml-1 bg-green-100 text-green-800 border-green-200 text-xs px-1 py-0">
-                               S
-                             </Badge>
-                           )}
+                          {applicant.isStudent === "Yes" && (
+                            <Badge className="ml-1 bg-green-100 text-green-800 border-green-200 text-xs px-1 py-0">
+                              S
+                            </Badge>
+                          )}
                         </div>
-                      </TableCell>
-                      <TableCell>
+                      </td>
+                      <td>
                         <div className="space-y-1">
                           <div className="font-medium text-sm">{applicant.fullName || "N/A"}</div>
-                                                     {applicant.isStudent === "Yes" && applicant.classStudying && (
-                             <div className="text-xs text-gray-500 flex items-center gap-1">
-                               <BookOpen className="w-3 h-3" />
-                               Class {applicant.classStudying}
-                             </div>
-                           )}
+                          {applicant.isStudent === "Yes" && applicant.classStudying && (
+                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                              <BookOpen className="w-3 h-3" />
+                              Class {applicant.classStudying}
+                            </div>
+                          )}
                         </div>
-                      </TableCell>
-                      <TableCell>
+                      </td>
+                      <td>
                         <div className="space-y-1 text-xs">
                           <div className="flex items-center gap-1">
                             <Mail className="w-3 h-3 text-gray-400" />
@@ -550,8 +574,8 @@ const CoursesSection = ({ searchQuery = "" }) => {
                             </div>
                           )}
                         </div>
-                      </TableCell>
-                      <TableCell className="hidden lg:table-cell">
+                      </td>
+                      <td className="hidden lg:table-cell">
                         <div className="space-y-1 text-xs">
                           {applicant.age && (
                             <div className="flex items-center gap-1">
@@ -572,8 +596,8 @@ const CoursesSection = ({ searchQuery = "" }) => {
                             </div>
                           )}
                         </div>
-                      </TableCell>
-                      <TableCell className="hidden xl:table-cell">
+                      </td>
+                      <td className="hidden xl:table-cell">
                         {(applicant.state || applicant.city) ? (
                           <div className="flex items-center gap-1 text-xs">
                             <MapPin className="w-3 h-3 text-gray-400" />
@@ -584,8 +608,8 @@ const CoursesSection = ({ searchQuery = "" }) => {
                         ) : (
                           <span className="text-xs text-gray-400">N/A</span>
                         )}
-                      </TableCell>
-                      <TableCell className="hidden 2xl:table-cell">
+                      </td>
+                      <td className="hidden 2xl:table-cell">
                         {applicant.convenientTimeSlot ? (
                           <div className="flex items-center gap-1 text-xs">
                             <ClockIcon className="w-3 h-3 text-gray-400" />
@@ -594,8 +618,8 @@ const CoursesSection = ({ searchQuery = "" }) => {
                         ) : (
                           <span className="text-xs text-gray-400">N/A</span>
                         )}
-                      </TableCell>
-                      <TableCell className="hidden 2xl:table-cell">
+                      </td>
+                      <td className="hidden 2xl:table-cell">
                         {applicant.referredBy ? (
                           <div className="flex items-center gap-1 text-xs">
                             <Users className="w-3 h-3 text-gray-400" />
@@ -604,29 +628,29 @@ const CoursesSection = ({ searchQuery = "" }) => {
                         ) : (
                           <span className="text-xs text-gray-400">N/A</span>
                         )}
-                      </TableCell>
-                      
-                      <TableCell>
+                      </td>
+
+                      <td>
                         <div className="flex items-center gap-1 text-xs">
                           <Calendar className="w-3 h-3 text-gray-400" />
                           <span className="text-gray-600">
                             {applicant.appliedAt ? new Date(applicant.appliedAt).toLocaleDateString() : "N/A"}
                           </span>
                         </div>
-                      </TableCell>
-                      <TableCell>
+                      </td>
+                      <td>
                         <div className="flex items-center gap-1 text-xs">
                           <Calendar className="w-3 h-3 text-gray-400" />
                           <span className="text-gray-600">
                             {applicant.isVerified ? (
                               <Badge className="ml-1 bg-green-100 text-green-800 border-green-200 text-xs px-1 py-0">
-                               Success
-                             </Badge>
+                                Success
+                              </Badge>
                             ) : "N/A"}
                           </span>
                         </div>
-                      </TableCell>
-                      <TableCell className="w-32">
+                      </td>
+                      <td className="w-32">
                         {applicant.message ? (
                           <div className="text-xs">
                             <div className="flex items-start gap-1">
@@ -639,10 +663,10 @@ const CoursesSection = ({ searchQuery = "" }) => {
                         ) : (
                           <span className="text-xs text-gray-400">No message</span>
                         )}
-                      </TableCell>
-                    </TableRow>
+                      </td>
+                    </tr>
                   ))}
-                </TableBody>
+                </tbody>
               </Table>
             </div>
           ) : (
@@ -655,12 +679,12 @@ const CoursesSection = ({ searchQuery = "" }) => {
       </Dialog>
       {/* View Course Modal */}
       <Dialog open={viewCourseCard} onOpenChange={setViewCourseCard}>
-        <DialogContent className="max-w-lg w-full">
+        <DialogContent className="max-w-sm w-full bg-white text-black">
           <DialogHeader>
             <DialogTitle>Course Details</DialogTitle>
           </DialogHeader>
           {selectedCourse && (
-            <CourseCard
+            <CourseCardNew
               title={selectedCourse.title}
               description={selectedCourse.description}
               duration={selectedCourse.duration}
@@ -802,7 +826,7 @@ const CoursesSection = ({ searchQuery = "" }) => {
           </div>
         </DialogContent>
       </Dialog>
-    </Card>
+    </div>
   );
 };
 

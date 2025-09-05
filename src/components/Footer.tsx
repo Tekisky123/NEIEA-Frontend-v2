@@ -95,9 +95,10 @@ const Footer: React.FC = () => {
 
                 {/* Quick Links */}
                 <div className="flex flex-col sm:flex-row justify-start items-start space-y-4 sm:space-y-0 sm:space-x-8">
-                    <a href="/about-us/testimonials" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Featured Stories &gt;</a>
-                    <a href="/about-us/contact" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Contact Us &gt;</a>
-                    <a href="/careers" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Careers &gt;</a>
+                    <Link to="/about-us/testimonials" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Featured Stories &gt;</Link>
+                    <Link to="/about-us/contact" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Contact Us &gt;</Link>
+                    <Link to="/careers" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Careers &gt;</Link>
+                    <Link to="/login" className="text-[#E5DED4] text-sm hover:underline hover:text-[#E5DED4] opacity-80 hover:opacity-100 transition-opacity">Login &gt;</Link>
                 </div>
             </div>
 
@@ -109,14 +110,14 @@ const Footer: React.FC = () => {
                             © 2012-2024 NEIEA, Inc. All rights reserved.
                         </div>
                         <div className="flex space-x-6">
-                            <a href="/privacy-policy" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Privacy Policy</a>
-                            <a href="/terms" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Terms & Conditions</a>
-                            <a href="/compliance" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Compliance Policies</a>
+                            <Link to="/privacy-policy" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Privacy Policy</Link>
+                            <Link to="/terms" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Terms & Conditions</Link>
+                            <Link to="/compliance" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Compliance Policies</Link>
                         </div>
                     </div>
-                                                <div className="text-center mt-4 text-sm opacity-60">
-                                Developed by <a href="https://www.tekisky.com" target="_blank" rel="noopener noreferrer" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Tekisky Private Limited</a>
-                            </div>
+                    <div className="text-center mt-4 text-sm opacity-60">
+                        Developed by <a href="https://www.tekisky.com" target="_blank" rel="noopener noreferrer" className="text-[#994263] hover:opacity-100 hover:underline transition-opacity">Tekisky Private Limited</a>
+                    </div>
                 </div>
             </div>
         </footer>

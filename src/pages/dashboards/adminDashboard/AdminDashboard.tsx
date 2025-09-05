@@ -51,7 +51,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-ngo-color6 relative">
+    <div className="flex min-h-screen bg-white relative">
       {/* Mobile Hamburger Button */}
       <button
         className="md:hidden fixed top-4 left-4 z-40 bg-ngo-color1 text-white p-2 rounded-full shadow-lg"
@@ -60,92 +60,105 @@ const AdminDashboard = () => {
       >
         <Menu size={24} />
       </button>
+      
       {/* Sidebar */}
       <aside
         className={`
-          transition-all duration-300 bg-ngo-color1 text-white flex flex-col py-8 px-2 min-h-screen shadow-lg
-          ${sidebarCollapsed ? "w-20" : "w-64 px-4"}
+          transition-all duration-300 bg-ngo-color1 text-white flex flex-col py-6 px-4 min-h-screen shadow-xl
+          ${sidebarCollapsed ? "w-20" : "w-64"}
           fixed top-0 left-0 z-50 h-full md:static md:block md:z-auto md:h-auto
           ${sidebarOpen ? "block" : "hidden"} md:block
         `}
         style={{ maxWidth: sidebarCollapsed ? '5rem' : '16rem' }}
       >
         {/* Mobile Close Button */}
-        <div className="md:hidden flex justify-end mb-4 px-2">
+        <div className="md:hidden flex justify-end mb-6">
           <button
-            className="bg-ngo-color6 text-ngo-color1 rounded-full p-2"
+            className="bg-ngo-color2 text-white rounded-full p-2 hover:bg-ngo-color6 transition-colors"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close sidebar"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
-        <div className={`mb-10 flex items-center gap-3 ${sidebarCollapsed ? "justify-center px-0" : "px-2"}`}>
-          <img src={logoRemovedBg} alt="NEIEA Logo" className="w-10 h-10 rounded-full bg-white p-1 shadow" />
+        
+        {/* Logo Section */}
+        <div className={`mb-8 flex items-center gap-3 ${sidebarCollapsed ? "justify-center" : ""}`}>
+          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+            <img src={logoRemovedBg} alt="NEIEA Logo" className="w-8 h-8" />
+          </div>
           {!sidebarCollapsed && (
-            <span className="font-extrabold text-2xl tracking-tight text-ngo-color5">NEIEA</span>
+            <span className="font-bold text-xl text-white">NEIEA</span>
           )}
         </div>
+        
         {/* Collapse/Expand Button - only on desktop */}
-        <div className="hidden md:flex justify-center mb-6">
+        <div className="hidden md:flex justify-center mb-8">
           <button
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-ngo-color6 text-ngo-color1 hover:bg-ngo-color2 transition"
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-ngo-color2 text-white hover:bg-ngo-color6 transition-colors"
             onClick={() => setSidebarCollapsed((prev) => !prev)}
             aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            {sidebarCollapsed ? <ChevronRight /> : <ChevronLeft />}
+            {sidebarCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
           </button>
         </div>
+        
+        {/* Navigation */}
         <nav className="flex-1 overflow-y-auto">
-          <ul className="space-y-2">
+          <ul className="space-y-1">
             {sidebarItems.map((item) => (
               <li key={item.value}>
                 <button
-                  className={`flex items-center w-full px-4 py-3 rounded-lg transition font-semibold text-base focus:outline-none shadow-sm
+                  className={`flex items-center w-full px-4 py-3 rounded-lg transition-all duration-200 font-medium text-sm focus:outline-none
                     ${activeTab === item.value
-                      ? "bg-ngo-color6 text-ngo-color1 shadow-md"
-                      : "bg-ngo-color1 text-white hover:bg-ngo-color2 "}
-                    ${sidebarCollapsed ? "justify-center px-0" : ""}
+                      ? "bg-ngo-color2 text-white shadow-md"
+                      : "text-white hover:bg-ngo-color2/80"}
+                    ${sidebarCollapsed ? "justify-center px-2" : ""}
                   `}
                   onClick={() => {
                     setActiveTab(item.value);
-                    setSidebarOpen(false); // close sidebar on mobile after selection
+                    setSidebarOpen(false);
                   }}
                   title={sidebarCollapsed ? item.label : undefined}
                 >
-                  {item.icon}
+                  <span className="flex-shrink-0">{item.icon}</span>
                   {!sidebarCollapsed && <span className="ml-3">{item.label}</span>}
                 </button>
               </li>
             ))}
           </ul>
         </nav>
-        <div className="mt-auto pt-8 border-t border-ngo-color5/30 flex flex-col items-center gap-2">
+        
+        {/* Logout Button */}
+        <div className="mt-auto pt-6 border-t border-white/20">
           <button
-            className="w-full flex items-center gap-2 px-4 py-3 rounded-lg bg-ngo-color5 hover:bg-ngo-color2 text-white font-semibold shadow"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-ngo-color5 hover:bg-ngo-color2 text-white font-medium transition-colors"
             onClick={logout}
           >
-            {sidebarCollapsed ? <LogOut/> : "Log out"}
+            <LogOut size={18} />
+            {!sidebarCollapsed && "Log out"}
           </button>
         </div>
       </aside>
+      
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
+      
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto bg-white">
         {activeTab === "courses" && <CoursesSection />}
-        {/* {activeTab === "new" && <NewCourse />}
-        {activeTab === "referredBy" && <ReferredBy />}
-        {activeTab === "donors" && <DonorsSection />}
-        {activeTab === "institutions" && <CourseSectionForInstitution />}
-        {activeTab === "admins" && <ManageAdmins />}
-        {activeTab === "security" && <SecuritySection />}
-        {activeTab === "website-navigation" && <WebsiteNavigationSection />} */}
+        {activeTab === "new" && <NewCourse />}
+        {/* {activeTab === "referredBy" && <ReferredBy />} */}
+        {/* {activeTab === "donors" && <DonorsSection />} */}
+        {/* {activeTab === "institutions" && <CourseSectionForInstitution />} */}
+        {/* {activeTab === "admins" && <ManageAdmins />} */}
+        {/* {activeTab === "security" && <SecuritySection />} */}
+        {/* {activeTab === "website-navigation" && <WebsiteNavigationSection />} */}
       </main>
     </div>
   );

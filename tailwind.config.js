@@ -9,7 +9,7 @@ export default {
       colors:{
         
         ngo: {
-          color1: "#005B99", // Calm blue – trust, responsibility
+          color1: "#00546b", // Calm blue – trust, responsibility
           color2: "#007F5F", // Teal green – community, environment
           color3: "#F4A261", // Soft orange – approachability
           color4: "#E76F51", // Muted red-orange – action and energy

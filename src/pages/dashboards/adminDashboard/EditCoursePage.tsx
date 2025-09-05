@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import CourseCard from "@/components/CourseCard";
+import CourseCardNew from "@/components/CourseCardNew";
 import ReactCrop, { type Crop, centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { toast } from "sonner";
@@ -19,6 +19,7 @@ const initialForm = {
   description: "",
   duration: "",
   level: "beginner",
+  category:"",
   fees: 0,
   targetAudience: "",
   whatsappLink: "",
@@ -52,6 +53,7 @@ export default function EditCoursePage() {
           description: c.description || "",
           duration: c.duration || "",
           level: c.level || "beginner",
+          category: c.category || "",
           fees: c.fees || '0',
           targetAudience: (c.targetAudience || []).join(", "),
           whatsappLink: c.whatsappLink || "",
@@ -155,6 +157,7 @@ export default function EditCoursePage() {
         data.append("description", form.description);
         data.append("duration", form.duration);
         data.append("level", form.level);
+        data.append("category", form.category);
         data.append("fees", String(form.fees));
         data.append("targetAudience", form.targetAudience);
         data.append("whatsappLink", form.whatsappLink);
@@ -184,6 +187,7 @@ export default function EditCoursePage() {
           description: form.description,
           duration: form.duration,
           level: form.level,
+          category: form.category,
           fees: form.fees,
           targetAudience: form.targetAudience,
           whatsappLink: form.whatsappLink,
@@ -253,6 +257,26 @@ export default function EditCoursePage() {
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Category *</label>
+              <select
+                value={form.category}
+                onChange={(e) => handleChange("category", e.target.value)}
+                className="w-full border rounded px-2 py-2 text-sm"
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="english">English</option>
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="social-science">Social Science</option>
+                <option value="technical">Technical</option>
+                <option value="financial-literacy">Financial & Literacy</option>
+                <option value="nios">NIOS</option>
+                <option value="cbse">CBSE</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div>
@@ -431,7 +455,7 @@ export default function EditCoursePage() {
                   </div>
                 )}
               </div>
-              <CourseCard {...previewData} />
+              <CourseCardNew {...previewData} />
             </div>
           </div>
         </form>

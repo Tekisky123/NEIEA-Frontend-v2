@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { courses, coursesCategory } from '../lib/courses';
 import { BookOpen, Clock, Users, ArrowRight, GraduationCap, IndianRupee } from 'lucide-react';
 import Layout from '../components/Layout';
+import axiosInstance from "@/lib/axiosInstance";
 
 interface Course {
+    _id: string;
     id: number;
     title: string;
     duration: string;
@@ -21,26 +22,23 @@ interface Course {
 
 interface ApplicationFormData {
     applicantType: 'individual' | 'institution';
-    // Individual fields
     fullName?: string;
     email?: string;
     phone?: string;
     age?: number;
     education?: string;
-    // Institution fields
     organizationName?: string;
     contactPerson?: string;
     organizationEmail?: string;
     organizationPhone?: string;
     organizationType?: string;
     numberOfStudents?: number;
-    // Common fields
-    selectedCourses: number[];
+    selectedCourses: string[];
     additionalInfo?: string;
 }
 
 const Courses: React.FC = () => {
-    const { category } = useParams<{ category?: string }>();
+    const { category: urlCategory } = useParams<{ category?: string }>();
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [showApplicationModal, setShowApplicationModal] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
@@ -49,15 +47,41 @@ const Courses: React.FC = () => {
         selectedCourses: [],
         additionalInfo: ''
     });
+    const [courses, setCourses] = useState<Course[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Fetch courses from API
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axiosInstance.get("/course/getAllCourses");
+                const coursesWithDummyImages = response.data.map((course: Course) => ({
+                    ...course,
+                    imageUrl: course.imageUrl || "https://img.freepik.com/free-photo/learning-education-ideas-insight-intelligence-study-concept_53876-120116.jpg?semt=ais_hybrid&w=740",
+                    level: course.level || "Beginner",
+                    targetAudience: course.targetAudience || ["General"],
+                    fees: course.fees || 0,
+                    category: course.category || "general",
+                }));
+                setCourses(coursesWithDummyImages);
+            } catch (error) {
+                console.error("Failed to fetch courses", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchCourses();
+    }, []);
 
     // Set active category based on URL parameter
     useEffect(() => {
-        if (category) {
-            setActiveCategory(category);
+        if (urlCategory) {
+            setActiveCategory(urlCategory);
         } else {
             setActiveCategory('all');
         }
-    }, [category]);
+    }, [urlCategory]);
 
     // Filter courses based on active category
     const filteredCourses = useMemo(() => {
@@ -69,7 +93,7 @@ const Courses: React.FC = () => {
             course.title &&
             course.title.trim() !== ''
         );
-    }, [activeCategory]);
+    }, [activeCategory, courses]);
 
     const handleCategoryChange = (categorySlug: string) => {
         setActiveCategory(categorySlug);
@@ -79,7 +103,7 @@ const Courses: React.FC = () => {
         setSelectedCourse(course);
         setApplicationForm(prev => ({
             ...prev,
-            selectedCourses: [course.id]
+            selectedCourses: [course._id]
         }));
         setShowApplicationModal(true);
     };
@@ -93,9 +117,7 @@ const Courses: React.FC = () => {
 
     const handleSubmitApplication = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
         console.log('Application submitted:', applicationForm);
-        // Close modal and show success message
         setShowApplicationModal(false);
         setApplicationForm({
             applicantType: 'individual',
@@ -105,13 +127,18 @@ const Courses: React.FC = () => {
     };
 
     const getCategoryName = (slug: string) => {
-        const category = coursesCategory.find(cat => cat.slug === slug);
-        return category ? category.name : slug;
+        // Replace with your actual category mapping logic
+        const categoryMap: Record<string, string> = {
+            "general": "General",
+            "technical": "Technical",
+            "vocational": "Vocational",
+            // Add more categories as needed
+        };
+        return categoryMap[slug] || slug;
     };
 
     return (
         <Layout>
-        {/* <div className="min-h-screen bg-gray-50"> */}
             {/* Hero Section */}
             <div className="bg-gradient-to-r from-[#994263] to-[#7a3450] text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,52 +149,17 @@ const Courses: React.FC = () => {
                         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
                             Explore all educational courses as well as skill-based, vocational, and technical courses currently open for enrollment.
                         </p>
-                        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <div className="flex items-center gap-2 bg-white bg-opacity-20 rounded-lg px-4 py-2">
-                <Users className="h-5 w-5" />
-                <span>For Individuals & Institutions</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white bg-opacity-20 rounded-lg px-4 py-2">
-                <GraduationCap className="h-5 w-5" />
-                <span>Expert-Led Learning</span>
-              </div>
-            </div> */}
                     </div>
                 </div>
             </div>
 
-            {/* Category Tabs */}
-            {/* <div className="bg-white shadow-sm border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-wrap justify-center gap-2 py-4">
-                        <button
-                            onClick={() => handleCategoryChange('all')}
-                            className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeCategory === 'all'
-                                ? 'bg-[#007AA4] text-white shadow-lg'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                }`}
-                        >
-                            All Courses
-                        </button>
-                        {coursesCategory.map((category) => (
-                            <button
-                                key={category.id}
-                                onClick={() => handleCategoryChange(category.slug)}
-                                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeCategory === category.slug
-                                    ? 'bg-[#007AA4] text-white shadow-lg'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                    }`}
-                            >
-                                {category.name}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div> */}
-
             {/* Courses Grid */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                {filteredCourses.length === 0 ? (
+                {isLoading ? (
+                    <div className="text-center py-16">
+                        <p className="text-gray-500">Loading courses...</p>
+                    </div>
+                ) : filteredCourses.length === 0 ? (
                     <div className="text-center py-16">
                         <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-600 mb-2">No courses available</h3>
@@ -177,16 +169,15 @@ const Courses: React.FC = () => {
                     <>
                         <div className="mb-8">
                             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                                {activeCategory === 'all' ? 'All Courses' : getCategoryName(activeCategory)}
+                                {activeCategory === 'all' ? 'All Courses' : getCategoryName(activeCategory.toUpperCase())}
                             </h2>
                             <p className="text-gray-600">
                                 {filteredCourses.length} course{filteredCourses.length !== 1 ? 's' : ''} available
                             </p>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             {filteredCourses.map((course) => (
-                                <div key={course.id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
+                                <div key={course._id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col h-full">
                                     {/* Course Image */}
                                     <div className="relative h-32 bg-gradient-to-br from-[#994263] to-[#7a3450] overflow-hidden">
                                         {course.imageUrl ? (
@@ -215,17 +206,14 @@ const Courses: React.FC = () => {
                                             </div>
                                         )}
                                     </div>
-
                                     {/* Course Content */}
                                     <div className="p-4 flex flex-col flex-grow">
                                         <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
                                             {course.title}
                                         </h3>
-
                                         <p className="text-gray-600 text-xs mb-3 line-clamp-2 flex-grow">
                                             {course.description}
                                         </p>
-
                                         {/* Course Details - Structured Layout */}
                                         <div className="space-y-2 mb-4">
                                             <div className="flex items-center gap-1 text-xs text-gray-600">
@@ -233,26 +221,22 @@ const Courses: React.FC = () => {
                                                 <span className="font-medium">Duration:</span>
                                                 <span>{course.duration}</span>
                                             </div>
-
                                             <div className="flex items-center gap-1 text-xs text-gray-600">
                                                 <GraduationCap className="h-3 w-3 text-[#994263]" />
                                                 <span className="font-medium">Level:</span>
                                                 <span className="capitalize">{course.level}</span>
                                             </div>
-
                                             <div className="flex items-center gap-1 text-xs text-gray-600">
                                                 <Users className="h-3 w-3 text-[#994263]" />
                                                 <span className="font-medium">Target:</span>
                                                 <span className="line-clamp-1">{course.targetAudience[0] || 'All learners'}</span>
                                             </div>
-
                                             <div className="flex items-center gap-1 text-xs text-gray-600">
                                                 <IndianRupee className="h-3 w-3 text-[#994263]" />
                                                 <span className="font-medium">Fees:</span>
                                                 <span>₹{course.fees}</span>
                                             </div>
                                         </div>
-
                                         {/* Apply Button */}
                                         <button
                                             onClick={() => handleApplyCourse(course)}
@@ -269,7 +253,7 @@ const Courses: React.FC = () => {
                 )}
             </div>
 
-            {/* Application Modal */}
+            {/* Application Modal (unchanged) */}
             {showApplicationModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -285,7 +269,6 @@ const Courses: React.FC = () => {
                                     </svg>
                                 </button>
                             </div>
-
                             {selectedCourse && (
                                 <div className="bg-gray-50 rounded-lg p-4 mb-6">
                                     <h3 className="font-semibold text-gray-900 mb-2">{selectedCourse.title}</h3>
@@ -295,7 +278,6 @@ const Courses: React.FC = () => {
                                     </div>
                                 </div>
                             )}
-
                             <form onSubmit={handleSubmitApplication} className="space-y-6">
                                 {/* Applicant Type Selection */}
                                 <div>
@@ -329,7 +311,6 @@ const Courses: React.FC = () => {
                                         </button>
                                     </div>
                                 </div>
-
                                 {/* Individual Form Fields */}
                                 {applicationForm.applicantType === 'individual' && (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -401,7 +382,6 @@ const Courses: React.FC = () => {
                                         </div>
                                     </div>
                                 )}
-
                                 {/* Institution Form Fields */}
                                 {applicationForm.applicantType === 'institution' && (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -484,7 +464,6 @@ const Courses: React.FC = () => {
                                         </div>
                                     </div>
                                 )}
-
                                 {/* Additional Information */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -498,7 +477,6 @@ const Courses: React.FC = () => {
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#994263] focus:border-transparent"
                                     />
                                 </div>
-
                                 {/* Submit Button */}
                                 <div className="flex gap-4 pt-4">
                                     <button
@@ -520,7 +498,6 @@ const Courses: React.FC = () => {
                     </div>
                 </div>
             )}
-        {/* </div> */}
         </Layout>
     );
 };

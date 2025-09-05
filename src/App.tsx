@@ -12,6 +12,7 @@ import TestimonialsFeaturedStories from './pages/aboutUs/TestimonialsFeaturedSto
 import ContactUs from './pages/aboutUs/ContactUs.tsx';
 import AdminDashboard from './pages/dashboards/adminDashboard/AdminDashboard.tsx';
 import Login from './pages/Login.tsx';
+import EditCoursePage from './pages/dashboards/adminDashboard/EditCoursePage.tsx';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard/course/edit/:id" element={<EditCoursePage />} />
 
           {/* 404 Not Found Route */}
           <Route path="*" element={<NotFound />} />
