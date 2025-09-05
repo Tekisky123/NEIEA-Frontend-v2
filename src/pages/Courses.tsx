@@ -259,7 +259,7 @@ const Courses: React.FC = () => {
                 </div>
 
                 {/* Search Bar */}
-                <div className="mb-8">
+                {/* <div className="mb-8">
                     <div className="relative max-w-2xl mx-auto">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -285,7 +285,7 @@ const Courses: React.FC = () => {
                             </div>
                         )}
                     </div>
-                </div>
+                </div> */}
 
                 {/* Institution Instructions */}
                 {userType === 'institution' && (
