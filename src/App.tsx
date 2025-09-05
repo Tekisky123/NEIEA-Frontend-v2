@@ -13,6 +13,10 @@ import ContactUs from './pages/aboutUs/ContactUs.tsx';
 import AdminDashboard from './pages/dashboards/adminDashboard/AdminDashboard.tsx';
 import Login from './pages/Login.tsx';
 import EditCoursePage from './pages/dashboards/adminDashboard/EditCoursePage.tsx';
+import Donate from './pages/Donate.tsx';
+import DonationForm from './pages/DonationForm.tsx';
+import ApplyCourse from './pages/ApplyCourse.tsx';
+import ApplyCourseInstitution from './pages/ApplyCourseInstitution.tsx';
 
 function App() {
   return (
@@ -35,14 +39,18 @@ function App() {
           <Route path="/about-us/our-working-model/blended-learning/discourse-oriented-pedagogy" element={<><h1>Discourse-oriented-pedagogy</h1></>} />
 
           <Route path="/our-works/*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Our Works - Coming Soon</h1></div>} />
-          <Route path="/courses" element={<Courses />} />
+          {/* <Route path="/courses" element={<Courses />} /> */}
           <Route path="/courses/:category" element={<Courses />} />
           <Route path="/partners/*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Partners - Coming Soon</h1></div>} />
-          <Route path="/donation/*" element={<div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Donation - Coming Soon</h1></div>} />
+          <Route path="/donate" element={<Donate />} />
+          <Route path="/donation/form" element={<DonationForm />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/dashboard/course/edit/:id" element={<EditCoursePage />} />
+
+          <Route path="/apply-course/:id" element={<ApplyCourse />} />
+          <Route path="/apply-course-institution" element={<ApplyCourseInstitution />} />
 
           {/* 404 Not Found Route */}
           <Route path="*" element={<NotFound />} />

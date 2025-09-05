@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,15 +75,15 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-brand">
-        <a href="/" title="Go to Home Page">
+        <Link to="/" title="Go to Home Page">
           <img
             src="/neia-logo.svg"
             alt="NEIA - National Educational Innovation Association"
             className="navbar-logo"
             title="NEIA - Click to go home"
           />
-        </a>
-        <a href="/donation/donate" className="mobile-donate-btn">Donate</a>
+        </Link>
+        <Link to="/donate" className="mobile-donate-btn">Donate</Link>
         <div className="mobile-bell-icon">
           <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
@@ -117,52 +118,52 @@ const Navbar: React.FC = () => {
             About Us<i className="icon-angle-down" aria-hidden="true"></i>
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'aboutus' ? 'show' : ''}`}>
-            <li><a className="dropdown-item" title="Introduction" href="/about-us/introduction" onClick={closeMobileMenu}>Introduction</a></li>
-            <li><a className="dropdown-item" title="Leadership" href="/about-us/leadership">Leadership</a>            </li>
+            <li><Link className="dropdown-item" title="Introduction" to="/about-us/introduction" onClick={closeMobileMenu}>Introduction</Link></li>
+            <li><Link className="dropdown-item" title="Leadership" to="/about-us/leadership">Leadership</Link>            </li>
             <li className={`dropdown-submenu ${activeSubmenu.includes('working-model') ? 'active' : ''}`}>
-              <a 
+              <Link 
                 className="dropdown-item" 
                 title="Our Working Model" 
-                href="/about-us/working-model"
+                to="/about-us/working-model"
                 onClick={(e) => toggleSubmenu('working-model', e)}
               >
                 Our Working Model<i className="submenu-arrow"></i>
-              </a>
+              </Link>
               <ul className="submenu">
                 <li className={`dropdown-submenu ${activeSubmenu.includes('blended-learning') ? 'active' : ''}`}>
-                  <a 
+                  <Link 
                     className="dropdown-item" 
                     title="Blended Learning Model" 
-                    href="/about-us/working-model/blended-learning"
+                    to="/about-us/working-model/blended-learning"
                     onClick={(e) => toggleSubmenu('blended-learning', e)}
                   >
                     Blended Learning Model<i className="submenu-arrow"></i>
-                  </a>
+                  </Link>
                   <ul className="submenu">
-                    <li><a className="dropdown-item" title="Discourse Oriented Pedagogy" href="/about-us/working-model/blended-learning/discourse-oriented-pedagogy">Discourse Oriented Pedagogy</a></li>
-                    <li><a className="dropdown-item" title="Application Of Technology" href="/about-us/working-model/blended-learning/application-of-technology">Application Of Technology</a></li>
+                    <li><Link className="dropdown-item" title="Discourse Oriented Pedagogy" to="/about-us/working-model/blended-learning/discourse-oriented-pedagogy">Discourse Oriented Pedagogy</Link></li>
+                    <li><Link className="dropdown-item" title="Application Of Technology" to="/about-us/working-model/blended-learning/application-of-technology">Application Of Technology</Link></li>
                   </ul>
                 </li>
-                <li><a className="dropdown-item" title="Partnering with Educational Institutions" href="/about-us/working-model/partnering-institutions">Partnering with Educational Institutions</a></li>
-                <li><a className="dropdown-item" title="Remote Individual Learning" href="/about-us/working-model/remote-learning">Remote Individual Learning</a></li>
+                <li><Link className="dropdown-item" title="Partnering with Educational Institutions" to="/about-us/working-model/partnering-institutions">Partnering with Educational Institutions</Link></li>
+                <li><Link className="dropdown-item" title="Remote Individual Learning" to="/about-us/working-model/remote-learning">Remote Individual Learning</Link></li>
               </ul>
             </li>
-            <li><a className="dropdown-item" title="Testimonials & Featured stories" href="/about-us/testimonials">Testimonials & Featured stories</a></li>
+            <li><Link className="dropdown-item" title="Testimonials & Featured stories" to="/about-us/testimonials">Testimonials & Featured stories</Link></li>
             <li className={`dropdown-submenu ${activeSubmenu.includes('media-events') ? 'active' : ''}`}>
-              <a 
+              <Link 
                 className="dropdown-item" 
                 title="Media and Events" 
-                href="/about-us/media-events"
+                to="/about-us/media-events"
                 onClick={(e) => toggleSubmenu('media-events', e)}
               >
                 Media and Events<i className="submenu-arrow"></i>
-              </a>
+              </Link>
               <ul className="submenu">
-                <li><a className="dropdown-item" title="Gallery" href="/about-us/media-events/gallery">Gallery</a></li>
+                <li><Link className="dropdown-item" title="Gallery" to="/about-us/media-events/gallery">Gallery</Link></li>
               </ul>
             </li>
-            <li><a className="dropdown-item" title="Reports and Financials" href="/about-us/reports-financials">Reports and Financials</a></li>
-            <li><a className="dropdown-item" title="Contact us" href="/about-us/contact">Contact us</a></li>
+            <li><Link className="dropdown-item" title="Reports and Financials" to="/about-us/reports-financials">Reports and Financials</Link></li>
+            <li><Link className="dropdown-item" title="Contact us" to="/about-us/contact">Contact us</Link></li>
           </ul>
         </li>
 
@@ -181,47 +182,47 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'ourwork' ? 'show' : ''}`}>
             <li className={`dropdown-submenu ${activeSubmenu.includes('education') ? 'active' : ''}`}>
-              <a 
+              <Link 
                 className="dropdown-item" 
                 title="Education" 
-                href="/our-works/education"
+                to="/our-works/education"
                 onClick={(e) => toggleSubmenu('education', e)}
               >
                 Education
                 <i className="submenu-arrow"></i>
-              </a>
+              </Link>
               <ul className="submenu">
                 <li>
-                  <a className="dropdown-item" title="Elementary & Middle School" href="/our-works/education/elementary-middle-school">Elementary & Middle School</a>
+                  <Link className="dropdown-item" title="Elementary & Middle School" to="/our-works/education/elementary-middle-school">Elementary & Middle School</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" title="Slum children" href="/our-works/education/slum-children">Slum children</a>
+                  <Link className="dropdown-item" title="Slum children" to="/our-works/education/slum-children">Slum children</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" title="Public(government) school" href="/our-works/education/public-government-school">Public(government) school</a>
+                  <Link className="dropdown-item" title="Public(government) school" to="/our-works/education/public-government-school">Public(government) school</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" title="Girl's Education" href="/our-works/education/girls-education">Girl's Education</a>
+                  <Link className="dropdown-item" title="Girl's Education" to="/our-works/education/girls-education">Girl's Education</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" title="Out of school / School Dropout" href="/our-works/education/out-of-school-dropout">Out of school / School Dropout</a>
+                  <Link className="dropdown-item" title="Out of school / School Dropout" to="/our-works/education/out-of-school-dropout">Out of school / School Dropout</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" title="Madrasa" href="/our-works/education/madrasa">Madrasa</a>
+                  <Link className="dropdown-item" title="Madrasa" to="/our-works/education/madrasa">Madrasa</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a className="dropdown-item" title="Teachers Training" href="/our-works/teachers-training">Teachers Training</a>
+              <Link className="dropdown-item" title="Teachers Training" to="/our-works/teachers-training">Teachers Training</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Skills training" href="/our-works/skills-training">Skills training</a>
+              <Link className="dropdown-item" title="Skills training" to="/our-works/skills-training">Skills training</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Adult education" href="/our-works/adult-education">Adult education</a>
+              <Link className="dropdown-item" title="Adult education" to="/our-works/adult-education">Adult education</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Global education" href="/our-works/global-education">Global education</a>
+              <Link className="dropdown-item" title="Global education" to="/our-works/global-education">Global education</Link>
             </li>
           </ul>
         </li>
@@ -241,28 +242,28 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'takeaction' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="English Courses" href="/courses/english">English Courses</a>
+              <Link className="dropdown-item" title="English Courses" to="/courses/english">English Courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Math Courses" href="/courses/math">Math Courses</a>
+              <Link className="dropdown-item" title="Math Courses" to="/courses/math">Math Courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Science Courses" href="/courses/science">Science Courses</a>
+              <Link className="dropdown-item" title="Science Courses" to="/courses/science">Science Courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Social Science Courses" href="/courses/social-science">Social Science Courses</a>
+              <Link className="dropdown-item" title="Social Science Courses" to="/courses/social-science">Social Science Courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Technical courses" href="/courses/technical">Technical courses</a>
+              <Link className="dropdown-item" title="Technical courses" to="/courses/technical">Technical courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Financial & Literacy courses" href="/courses/financial-literacy">Financial & Literacy courses</a>
+              <Link className="dropdown-item" title="Financial & Literacy courses" to="/courses/financial-literacy">Financial & Literacy courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="NIOS courses" href="/courses/nios">NIOS courses</a>
+              <Link className="dropdown-item" title="NIOS courses" to="/courses/nios">NIOS courses</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="CBSE courses" href="/courses/cbse">CBSE courses</a>
+              <Link className="dropdown-item" title="CBSE courses" to="/courses/cbse">CBSE courses</Link>
             </li>
           </ul>
         </li>
@@ -283,13 +284,13 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'ourwork2' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="Join NEIEA as a Partner" href="/partners/join">Join NEIEA as a Partner</a>
+              <Link className="dropdown-item" title="Join NEIEA as a Partner" to="/partners/join">Join NEIEA as a Partner</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Partnering Institutions" href="/partners/institutions">Partnering Institutions</a>
+              <Link className="dropdown-item" title="Partnering Institutions" to="/partners/institutions">Partnering Institutions</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Global Partners" href="/partners/global">Global Partners</a>
+              <Link className="dropdown-item" title="Global Partners" to="/partners/global">Global Partners</Link>
             </li>
           </ul>
         </li>
@@ -309,13 +310,13 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'aboutus2' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="Be a Partner" href="/donation/be-partner">Be a Partner</a>
+              <Link className="dropdown-item" title="Be a Partner" to="/donation/be-partner">Be a Partner</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Volunteer" href="/donation/volunteer">Volunteer</a>
+              <Link className="dropdown-item" title="Volunteer" to="/donation/volunteer">Volunteer</Link>
             </li>
             <li>
-              <a className="dropdown-item" title="Donate" href="/donation/donate">Donate</a>
+              <Link className="dropdown-item" title="Donate" to="/donate">Donate</Link>
             </li>
           </ul>
         </li>
@@ -335,7 +336,7 @@ const Navbar: React.FC = () => {
           </div>
           <ul className={`dropdown-menu ${activeDropdown === 'takeaction2' ? 'show' : ''}`}>
             <li>
-              <a className="dropdown-item" title="Introduction" href="/nei-usa/introduction">Introduction</a>
+              <Link className="dropdown-item" title="Introduction" to="/nei-usa/introduction">Introduction</Link>
             </li>
           </ul>
         </li>
@@ -350,15 +351,13 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="nav-item">
-          <a
+          <Link
             title="Donate"
-            href="/donation/donate"
+            to="/donate"
             className="btn btn-yellow donate-button"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             DONATE
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

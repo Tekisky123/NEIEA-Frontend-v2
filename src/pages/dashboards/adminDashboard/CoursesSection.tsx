@@ -318,7 +318,7 @@ const CoursesSection = ({ searchQuery = "" }) => {
               <tbody>
                 {paginatedCourses.map((course) => (
                   <tr key={course._id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-8">
                       <div className="relative">
                         <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
                           {course.imageUrl ? (

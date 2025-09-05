@@ -23,6 +23,7 @@ import CourseSectionForInstitution from "./CourseSectionForInstitution";
 import WebsiteNavigationSection from "./WebsiteNavigationSection";
 import logoRemovedBg from "../../../../public/neia-logo.svg";
 import ReferredBy from "./ReferredBy";
+import ManageLandingPages from "./ManageLandingPages";
 
 const sidebarItems = [
   { label: "Dashboard", value: "dashboard", icon: <Menu className="w-5 h-5" /> },
@@ -153,12 +154,13 @@ const AdminDashboard = () => {
       <main className="flex-1 overflow-y-auto bg-white">
         {activeTab === "courses" && <CoursesSection />}
         {activeTab === "new" && <NewCourse />}
-        {/* {activeTab === "referredBy" && <ReferredBy />} */}
-        {/* {activeTab === "donors" && <DonorsSection />} */}
-        {/* {activeTab === "institutions" && <CourseSectionForInstitution />} */}
+        {activeTab === "referredBy" && <ReferredBy />}
+        {activeTab === "donors" && <DonorsSection />}
+        {activeTab === "institutions" && <CourseSectionForInstitution />}
         {/* {activeTab === "admins" && <ManageAdmins />} */}
         {/* {activeTab === "security" && <SecuritySection />} */}
         {/* {activeTab === "website-navigation" && <WebsiteNavigationSection />} */}
+        {activeTab === "website-navigation" && <ManageLandingPages />}
       </main>
     </div>
   );
