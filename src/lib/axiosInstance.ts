@@ -15,12 +15,11 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      // Ensure headers exist and set the Authorization header
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${token}`,
-      };
+    if (token && config.headers) {
+      // Correct way: mutate headers, don’t replace
+      config.headers.set
+        ? config.headers.set("Authorization", `Bearer ${token}`)
+        : (config.headers["Authorization"] = `Bearer ${token}`);
     }
 
     return config;
