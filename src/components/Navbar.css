@@ -49,20 +49,20 @@
   margin-right: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 2px solid #007b9e;
-  border-radius: 8px;
+  /* border: 2px solid #007b9e; */
+  /* border-radius: 8px; */
   padding: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.9);
+  /* background-color: rgba(255, 255, 255, 0.9); */
 }
 
-.navbar-logo:hover {
+/* .navbar-logo:hover {
   border-color: #FFCC4E;
   background-color: rgba(255, 204, 78, 0.1);
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0, 123, 158, 0.2);
-}
+} */
 
 /* Desktop Navigation */
 .nav-list {

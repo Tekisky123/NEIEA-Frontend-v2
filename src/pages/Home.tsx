@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Home: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-
   // Images from public/home/ directory (consistent aspect ratio expected)
   const heroImageNames = [
     'slider1_upscale',
@@ -16,6 +11,12 @@ const Home: React.FC = () => {
     'slider6'
   ];
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(heroImageNames.length).fill(false));
+
   // Auto-slide functionality
   useEffect(() => {
     if (isPaused) return;
@@ -24,6 +25,14 @@ const Home: React.FC = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, [heroImageNames.length, isPaused]);
+
+  // Preload next image for smoother transitions
+  useEffect(() => {
+    const nextIndex = (currentSlide + 1) % heroImageNames.length;
+    const nextImageSrc = `/home/${heroImageNames[nextIndex]}.jpg`;
+    const img = new Image();
+    img.src = nextImageSrc;
+  }, [currentSlide, heroImageNames]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroImageNames.length);
@@ -37,28 +46,38 @@ const Home: React.FC = () => {
     setCurrentSlide(index);
   };
 
-  // Local component to robustly load images with multiple extension fallbacks
-  const SlideImage = ({ name, alt, className = '', position }: { name: string; alt: string; className?: string; position?: string; }): JSX.Element => {
-    const candidates: string[] = [
-      `/home/${name}@2x.webp`,
-      `/home/${name}.webp`,
-      `/home/${name}@2x.png`,
-      `/home/${name}.png`,
-      `/home/${name}@2x.jpg`,
-      `/home/${name}.jpg`,
-      `/home/${name}@2x.jpeg`,
-      `/home/${name}.jpeg`,
-    ];
-    const [attempt, setAttempt] = useState<number>(0);
-    const currentSrc = candidates[Math.min(attempt, candidates.length - 1)];
+  // Local component to load images with correct extensions based on actual files
+  const SlideImage = ({ name, alt, className = '', position, index }: { name: string; alt: string; className?: string; position?: string; index: number }): JSX.Element => {
+    // Map image names to their actual file extensions
+    const getImageSrc = (imageName: string): string => {
+      const imageMap: { [key: string]: string } = {
+        'slider1_upscale': '/home/slider1_upscale.png',
+        'slider2': '/home/slider2.jpg',
+        'slider3': '/home/slider3.jpg',
+        'slider4': '/home/slider4.jpg',
+        'slider5': '/home/slider5.jpg',
+        'slider6': '/home/slider6.jpg', // Using .jpg instead of .jpeg for consistency
+      };
+      
+      return imageMap[imageName] || `/home/${imageName}.jpg`;
+    };
+
+    const handleImageLoad = () => {
+      setImagesLoaded(prev => {
+        const newState = [...prev];
+        newState[index] = true;
+        return newState;
+      });
+    };
+
     return (
       <img
-        src={currentSrc}
+        src={getImageSrc(name)}
         alt={alt}
         className={className}
-        onError={() => setAttempt((prev) => prev + 1)}
         loading="eager"
         decoding="async"
+        onLoad={handleImageLoad}
         style={position ? { objectPosition: position } : undefined}
       />
     );
@@ -227,16 +246,17 @@ const Home: React.FC = () => {
           return (
           <div
             key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
             {/* Full-bleed image: consistent size across slides */}
             <div className="absolute inset-0">
               <SlideImage
                 name={name}
-              alt={`Slide ${index + 1}`}
+                alt={`Slide ${index + 1}`}
                 className="w-full h-full object-contain sm:object-cover select-none pointer-events-none sharp-image bg-black"
                 position={focusPosition}
+                index={index}
             />
           </div>
           </div>
@@ -371,13 +391,13 @@ const Home: React.FC = () => {
               </div>
 
               {/* Top Right Image */}
-              <div className="absolute top-8 right-8 w-64 h-40 lg:w-80 lg:h-48 animate-fade-in">
+              {/* <div className="absolute top-8 right-8 w-64 h-40 lg:w-80 lg:h-48 animate-fade-in">
                 <img
                   src="/home/Screenshot 2025-09-02 134307.png"
                   alt="Vision Illustration"
                   className="w-full h-full object-contain transform hover:scale-110 transition-transform duration-500"
                 />
-              </div>
+              </div> */}
 
               {/* Mission - Bottom Right */}
               <div className="vision-mission-desktop absolute -bottom-3 sm:-bottom-1 md:bottom-1 lg:bottom-16 right-0 sm:right-0 md:right-0 lg:right-2 xl:right-4 w-auto max-w-md lg:max-w-lg px-4 sm:px-6 md:px-0 animate-fade-in">

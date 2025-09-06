@@ -99,7 +99,7 @@ const Introduction: React.FC = () => {
                             <svg className="w-4 h-4 md:w-5 md:h-5 text-amber-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
-                            Section 8 Non-Profit
+                            NEIEA is registered under section 8A
                         </div>
                         <div className="flex items-center text-xs md:text-sm text-white/90 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full">
                             <svg className="w-4 h-4 md:w-5 md:h-5 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -128,7 +128,7 @@ const Introduction: React.FC = () => {
                             </div>
                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-amber-500 rounded-full animate-ping"></div>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>Section 8</h3>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "600" }}>Section 8A</h3>
                         <p className="text-gray-600" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>Non-Profit Organization</p>
                     </div>
                     <div className="text-center group">
@@ -185,7 +185,7 @@ const Introduction: React.FC = () => {
                                             <div className="absolute -left-2 top-0 w-4 h-4 bg-amber-500 rounded-full animate-ping"></div>
                                             <h3 className="text-xl font-bold text-gray-800 mb-2">April 18, 2022</h3>
                                             <p className="text-gray-600 leading-relaxed" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>
-                                                NEIEA was officially registered as a <span className="font-semibold text-amber-600">Section 8a non-profit educational organization</span> in India, marking the culmination of two years of active educational discussions and planning during the Pandemic.
+                                                NEIEA was officially registered as a <span className="font-semibold text-amber-600">Section 8A non-profit educational organization</span> in India, marking the culmination of two years of active educational discussions and planning during the Pandemic.
                                             </p>
                                         </div>
                                         
@@ -202,7 +202,7 @@ const Introduction: React.FC = () => {
                                     <div className="grid grid-cols-3 gap-4 mt-8">
                                         <div className="text-center group">
                                             <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl mx-auto mb-2 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                                <span className="text-white font-bold text-lg">8</span>
+                                                <span className="text-white font-bold text-lg">8A</span>
                                             </div>
                                             <p className="text-sm text-gray-600" style={{ fontFamily: "'Source Serif 4', serif", fontWeight: "500" }}>Section</p>
                                         </div>
